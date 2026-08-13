@@ -63,6 +63,13 @@ Verify:
 - **Logos** (`nav`/`footer`) are standalone images — `md2jcr` drops an image wrapped in a link,
   which previously left an empty/black logo in Universal Editor. Trade-off: the logo is not
   click-to-home in AEM; re-add a link in UE if desired.
+- **External images render inline (AEM fix):** image fields on the blocks used here
+  (`hero-image`, `cards-stats`, `cards-logos`, `carousel-news`) are modeled as **richtext**
+  rather than `reference`. A `reference` field expects a DAM-managed asset path; fed an
+  external `www.covista.com/…` URL, AEM emits a broken/blank optimized picture (the hero
+  showed a black box). As richtext, the image is stored as an inline `<img src="…">` that AEM
+  renders directly. (Local EDS preview was unaffected either way.) If you later move assets
+  into the DAM, you can revert those fields to `reference` and point them at DAM paths.
 - **Header fonts/colors** use literal fallbacks in `blocks/header/header.css` (and
   `blocks/hero-image/hero-image.css`) so the cream text / green bar render even when the
   `brand.css` custom-property tokens don't resolve in the Universal Editor canvas.

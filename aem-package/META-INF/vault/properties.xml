@@ -3,6 +3,6 @@
 <properties>
   <entry key="name">covista-homepage-content</entry>
   <entry key="group">covista</entry>
-  <entry key="version">1.1</entry>
+  <entry key="version">1.2</entry>
   <entry key="description">Covista homepage + nav + footer content (JCR) for the dacovista crosswalk / Universal Editor project. Includes hero-image (not video) and standalone logo images, with header font/color fallbacks handled in block CSS.</entry>
 </properties>

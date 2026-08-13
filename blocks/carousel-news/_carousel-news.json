@@ -36,7 +36,7 @@
       "id": "carousel-news-item",
       "fields": [
         {
-          "component": "reference",
+          "component": "richtext",
           "valueType": "string",
           "name": "media_image",
           "label": "Background Image",
