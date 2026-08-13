@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-feature",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-08-12T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.covista.com/",
+    "originPage": "Covista homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "feature",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "2 columns: image | (heading + paragraph(s) + CTA)",
+    "columnCount": 2,
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "image + text feature rows",
+      "alternating (image-left / image-right) marketing sections",
+      "single side-by-side content blocks with a CTA"
+    ],
+    "notSuitableFor": [
+      "repeating card grids",
+      "data tables or comparison tables"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 3,
+    "lastUsed": "2026-08-12T00:00:00.000Z"
+  }
+}

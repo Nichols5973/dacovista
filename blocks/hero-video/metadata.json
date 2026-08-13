@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-video",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-08-12T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.covista.com/",
+    "originPage": "Covista homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background media + heading + 1 CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "homepage hero banners",
+      "full-bleed banners with background image or video",
+      "dark-overlay hero sections with a single CTA"
+    ],
+    "notSuitableFor": [
+      "text-only hero on light background",
+      "hero sections requiring multiple content blocks below the banner"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-12T00:00:00.000Z"
+  }
+}

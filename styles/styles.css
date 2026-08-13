@@ -1,3 +1,5 @@
+@import url('brand.css');
+
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -11,34 +13,34 @@
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
-  --overlay-background-color:lightgrey;
+  /* colors (Covista brand — see brand.css) */
+  --background-color: #fff;
+  --light-color: var(--secondary-cream);
+  --dark-color: var(--brand-green);
+  --text-color: #000;
+  --link-color: rgb(130 64 76);
+  --link-hover-color: rgb(71 107 82);
+  --overlay-background-color: lightgrey;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: "acumin-pro-wide-light", helvetica, arial, sans-serif;
+  --heading-font-family: "acumin-pro-wide-medium", helvetica, arial, sans-serif;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xxl: 48px;
+  --heading-font-size-xl: 40px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
 
   /* nav heights */
-  --nav-height: 64px;
+  --nav-height: 96px;
   --breadcrumbs-height: 34px;
   --header-height: var(--nav-height);
 }
@@ -56,20 +58,15 @@
   src: local('Arial');
 }
 
-@media (width >= 900px) {
+@media (width <= 900px) {
   :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    /* heading sizes — mobile */
+    --heading-font-size-xxl: 36px;
+    --heading-font-size-xl: 28px;
+    --heading-font-size-l: 22px;
+    --heading-font-size-m: 20px;
+    --heading-font-size-s: 18px;
+    --heading-font-size-xs: 16px;
   }
 }
 
@@ -116,8 +113,10 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text-color);
   scroll-margin: 40px;
 }
 
@@ -164,8 +163,8 @@ button {
 
 /* links */
 a:any-link {
-  color: var(--link-color);
-  text-decoration: none;
+  color: var(--text-color);
+  text-decoration: underline;
   overflow-wrap: break-word;
 }
 
@@ -174,49 +173,67 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
+/* buttons — Covista primary is a squared grey pill with an arrow icon */
+.button-container {
+  display: inline;
+}
+
 a.button:any-link,
 button {
   box-sizing: border-box;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
   max-width: 100%;
   margin: 12px 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font-family: var(--body-font-family);
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 12px 24px;
+  font-family: var(--heading-font-family);
   font-style: normal;
+  font-size: 15px;
   font-weight: 500;
-  line-height: 1.25;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: var(--button-grey);
+  color: var(--text-color);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: background-color 0.2s ease;
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: var(--brand-green);
+  color: var(--hero-text-color);
   cursor: pointer;
 }
 
 button:disabled,
 button:disabled:hover {
   background-color: var(--light-color);
+  color: var(--text-color);
   cursor: unset;
 }
 
+/* secondary — outlined green */
 a.button.secondary,
 button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
+  background-color: transparent;
+  border: 1px solid var(--brand-green);
+  color: var(--brand-green);
+}
+
+a.button.secondary:hover,
+button.secondary:hover {
+  background-color: var(--brand-green);
+  color: var(--hero-text-color);
 }
 
 main img {
@@ -263,4 +280,26 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* Covista 'secondary' band — cream background */
+main .section.secondary {
+  background-color: var(--secondary-cream);
+  margin: 0;
+  padding: 48px 0;
+}
+
+/* Covista 'dark' band — brand green with light text */
+main .section.dark {
+  background-color: var(--brand-green);
+  color: var(--hero-text-color);
+  margin: 0;
+  padding: 48px 0;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark a:any-link {
+  color: var(--hero-text-color);
 }

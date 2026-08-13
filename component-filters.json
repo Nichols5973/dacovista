@@ -34,15 +34,63 @@
     ]
   },
   {
+    "id": "cards-logos",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-stats",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
     ]
   },
   {
+    "id": "carousel-news",
+    "components": [
+      "carousel-news-item"
+    ]
+  },
+  {
     "id": "carousel",
     "components": [
       "carousel-item"
+    ]
+  },
+  {
+    "id": "columns-feature",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
+    "id": "columns-stock",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
     ]
   },
   {

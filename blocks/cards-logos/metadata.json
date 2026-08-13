@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-logos",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-08-12T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.covista.com/",
+    "originPage": "Covista homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "logos",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "logo image wrapped in outbound link, no text",
+    "itemCount": 5,
+    "imageCount": 5
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "partner / brand / institution logo rows",
+      "clickable logo grids that link out",
+      "logo walls with no accompanying text"
+    ],
+    "notSuitableFor": [
+      "cards with titles and descriptions",
+      "photo-based article/product cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-12T00:00:00.000Z"
+  }
+}

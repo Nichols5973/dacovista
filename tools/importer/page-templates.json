@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "projectType": "xwalk"
+  },
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.covista.com/"
+      ],
+      "coverageGaps": [],
+      "description": "Covista homepage: hero banner with video/overlay + CTA, stats row (institutions/graduates/alumni), research feature card, 'Our institutions' intro + 5 institution logos, supporting-workers feature, careers feature, stock information + investor callout, and a 'News and stories' carousel of article cards.",
+      "blocks": [
+        {
+          "name": "hero-video",
+          "instances": [
+            "div.homepage-hero"
+          ]
+        },
+        {
+          "name": "cards-stats",
+          "instances": [
+            "div.t-layout__one-column.standard-width.overlap.pad-bottom-40-desktop.cc-bg-secondary-mobile"
+          ]
+        },
+        {
+          "name": "columns-feature",
+          "instances": [
+            "div.t-layout__one-column.standard-width.pad-top-0.pad-bottom-0.edge-to-edge__mobile",
+            "div.t-layout__one-column.edge-to-edge.pad-top-20-desktop.pad-bottom-40-desktop",
+            "div.t-layout__one-column.edge-to-edge.pad-y-0.pad-bottom-50-desktop"
+          ]
+        },
+        {
+          "name": "cards-logos",
+          "instances": [
+            "div.t-layout__one-column.standard-width.p-universal-bg-color--secondary.pad-bottom-0.pad-top-0"
+          ]
+        },
+        {
+          "name": "columns-stock",
+          "instances": [
+            "div.t-layout__two-column.edge-to-edge.layout__split--5050.sidebar-first.p-universal-bg-color--secondary"
+          ]
+        },
+        {
+          "name": "carousel-news",
+          "instances": [
+            "div.t-layout__one-column.edge-to-edge.carousel-view--edge-to-edge"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc7",
+          "name": "Our institutions intro",
+          "selector": "div.t-layout__one-column.optimized-width.p-universal-bg-color--secondary.pad-top-0.pad-bottom-0",
+          "style": "secondary",
+          "blocks": [],
+          "defaultContent": [
+            "div.t-layout__one-column.optimized-width.p-universal-bg-color--secondary.pad-top-0.pad-bottom-0 h2",
+            "div.t-layout__one-column.optimized-width.p-universal-bg-color--secondary.pad-top-0.pad-bottom-0 p"
+          ]
+        },
+        {
+          "id": "rc8",
+          "name": "Institution logos row",
+          "selector": "div.t-layout__one-column.standard-width.p-universal-bg-color--secondary.pad-bottom-0.pad-top-0",
+          "style": "secondary",
+          "blocks": [
+            "cards-logos"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc9",
+          "name": "Learn more CTA",
+          "selector": "div.t-layout__one-column.optimized-width.p-universal-bg-color--secondary.pad-top-20.pad-bottom-40",
+          "style": "secondary",
+          "blocks": [],
+          "defaultContent": [
+            "div.t-layout__one-column.optimized-width.p-universal-bg-color--secondary.pad-top-20.pad-bottom-40 a"
+          ]
+        },
+        {
+          "id": "rc12",
+          "name": "Stock information + investor callout",
+          "selector": "div.t-layout__two-column.edge-to-edge.layout__split--5050.sidebar-first.p-universal-bg-color--secondary",
+          "style": "secondary",
+          "blocks": [
+            "columns-stock"
+          ],
+          "defaultContent": []
+        }
+      ]
+    }
+  ]
+}

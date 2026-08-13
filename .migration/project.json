@@ -1,0 +1,10 @@
+{
+  "type": "xwalk",
+  "sites": {
+    "dacovista": {
+      "previewOrg": "nichols5973",
+      "previewSite": "dacovista",
+      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

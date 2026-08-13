@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-stats",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-08-12T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.covista.com/",
+    "originPage": "Covista homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "stats",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + big stat number + label",
+    "itemCount": 3,
+    "imageCount": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "statistics / metrics rows",
+      "icon + number + label callouts",
+      "at-a-glance key figures near the top of a page"
+    ],
+    "notSuitableFor": [
+      "article/product card grids with photos and body text",
+      "single feature highlights"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-12T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,208 @@
+/*
+ * carousel-news — horizontal "News and stories" card scroller
+ * Design extracted from covista.com computed styles.
+ * Card: square (1:1) image on top, mauve taxonomy tag line, bold serif title link.
+ * Desktop ~3-4 cards visible, mobile ~1.25; prev/next nav arrows top-right.
+ */
+
+.carousel-news {
+  --card-width: 290px;   /* mobile card width (source @390) */
+  --card-gap: 20px;      /* gap between cards (source) */
+
+  position: relative;
+}
+
+.carousel-news .carousel-news-slides-container {
+  position: relative;
+}
+
+/* --- Horizontal scroll track ---
+   Edge-to-edge: bleed the scroll track to the right viewport edge so more
+   cards peek (source is full-bleed). First card + nav stay at content gutter. */
+.carousel-news .carousel-news-slides {
+  list-style: none;
+  margin: 0;
+  margin-right: calc(-1 * (50vw - 50%));
+  padding: 0;
+  display: flex;
+  gap: var(--card-gap);
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: scroll clip;
+  scrollbar-width: none;
+}
+
+.carousel-news .carousel-news-slides::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Card --- */
+.carousel-news .carousel-news-slide {
+  flex: 0 0 var(--card-width);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;               /* image -> content (source card gap) */
+  align-items: stretch;
+}
+
+/* --- Square image --- */
+.carousel-news .carousel-news-slide-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;     /* source images render 1:1 (364x364 / 290x290) */
+  overflow: hidden;
+}
+
+.carousel-news .carousel-news-slide-image p {
+  margin: 0;
+  height: 100%;
+  line-height: 0;
+}
+
+.carousel-news .carousel-news-slide-image picture {
+  display: block;
+  height: 100%;
+}
+
+.carousel-news .carousel-news-slide-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Content: tags + title --- */
+.carousel-news .carousel-news-slide-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;               /* tags -> title (source) */
+}
+
+.carousel-news .carousel-news-slide-content p {
+  margin: 0;
+}
+
+/* Tags line (first paragraph) — mauve, small */
+.carousel-news .carousel-news-slide-content p:first-child {
+  font-family: acumin-pro-wide-reg, var(--body-font-family);
+  font-size: 16px;         /* mobile; desktop 14px */
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.27px;
+  color: var(--link-color);   /* rgb(130 64 76) */
+}
+
+/* Title link — EDS auto-decorates <p><a> into .button-container > a.button.
+   Reset the grey-pill button styling back to a plain bold serif link. */
+.carousel-news .carousel-news-slide-content .button-container {
+  margin: 0;
+  display: block;
+}
+
+.carousel-news .carousel-news-slide-content a.button:any-link {
+  display: inline;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  background-color: transparent;
+  color: var(--text-color);
+  font-family: var(--serif-font-family);   /* albiona-light serif */
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28.8px;
+  letter-spacing: -0.27px;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  transition: color 0.2s ease;
+}
+
+.carousel-news .carousel-news-slide-content a.button::after {
+  content: "\00a0→";       /* trailing arrow (source) */
+  white-space: nowrap;
+}
+
+.carousel-news .carousel-news-slide-content a.button:hover,
+.carousel-news .carousel-news-slide-content a.button:focus {
+  background: none;
+  background-color: transparent;
+  color: var(--link-hover-color);
+}
+
+/* --- Navigation arrows (top-right, above the cards) --- */
+.carousel-news .carousel-news-navigation-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(calc(-100% - 10px));
+  display: flex;
+  gap: 12px;
+  z-index: 2;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.carousel-news .carousel-news-navigation-buttons button {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  background-color: transparent;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.carousel-news .carousel-news-navigation-buttons button:hover,
+.carousel-news .carousel-news-navigation-buttons button:focus {
+  background: transparent;
+  background-color: transparent;
+  opacity: 0.65;
+}
+
+/* mauve chevron glyphs (match source cv-icomoon arrows) */
+.carousel-news .carousel-news-navigation-buttons button::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--link-color);
+  border-bottom: 0;
+  border-left: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.carousel-news .carousel-news-navigation-buttons button.slide-prev::after {
+  transform: translate(-50%, -50%) rotate(-135deg);
+  margin-left: 3px;
+}
+
+.carousel-news .carousel-news-navigation-buttons button.slide-next::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+  margin-left: -3px;
+}
+
+/* --- Dot indicators: source shows none on desktop; hide for fidelity --- */
+.carousel-news .carousel-news-slide-indicators {
+  display: none;
+}
+
+/* --- Desktop --- */
+@media (width >= 900px) {
+  .carousel-news {
+    --card-width: 364px;   /* source @1440 */
+  }
+
+  .carousel-news .carousel-news-slide-content p:first-child {
+    font-size: 14px;       /* source desktop tag size */
+  }
+}

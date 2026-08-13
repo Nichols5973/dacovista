@@ -1,20 +1,138 @@
+/* Covista footer — brand-green background, cream text, column nav */
+
+/* stylelint-disable no-descending-specificity -- rules below target distinct elements; source order follows visual layout */
+
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: var(--brand-green);
+  color: var(--hero-text-color);
+  font-family: var(--body-font-family);
+  font-size: 15px;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer {
+  box-sizing: border-box;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 56px 24px 32px;
+}
+
+footer .footer a {
+  color: var(--hero-text-color);
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  text-decoration: underline;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+/* --- Top: logo mark + address --- */
+footer .footer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+footer .footer-top img {
+  width: auto;
+  height: 56px;
+}
+
+footer .footer-top p:last-child {
+  color: var(--hero-text-color);
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* --- Footer nav columns --- */
+footer .footer-nav > ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px 32px;
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer-nav > ul > li > a {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.017em;
+}
+
+footer .footer-nav ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer-nav ul ul li {
+  margin-bottom: 8px;
+}
+
+footer .footer-nav ul ul a {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* --- Divider before legal/meta --- */
+footer .footer-legal {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgb(255 249 245 / 25%);
+}
+
+footer .footer-legal p {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+footer .footer-legal p + p {
+  margin-top: 8px;
+}
+
+/* --- Meta: legal links + social --- */
+footer .footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+footer .footer-meta p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer .footer-meta a {
+  font-size: 13px;
+}
+
+/* --- Responsive --- */
+@media (width < 900px) {
+  footer .footer-nav > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  footer .footer-top {
+    flex-direction: column;
+  }
+
+  footer .footer-meta {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

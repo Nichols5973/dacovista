@@ -1,0 +1,34 @@
+/*
+ * brand.css — Covista design tokens extracted from https://www.covista.com/
+ * Fonts: Adobe Fonts (Typekit kit owr0vjc) — Acumin Pro Wide + Albiona
+ */
+:root {
+  /* fonts */
+  --heading-font-family: "acumin-pro-wide-medium", helvetica, arial, sans-serif;
+  --body-font-family: "acumin-pro-wide-light", helvetica, arial, sans-serif;
+  --serif-font-family: "albiona-light", rockwell, "Josefin Slab", serif;
+
+  /* brand colors */
+  --background-color: #fff;
+  --text-color: #000;
+  --brand-green: rgb(27 73 41);          /* primary dark green (footer, stats, accents) */
+  --secondary-cream: rgb(255 249 245);   /* section 'secondary' background band */
+  --research-pink: rgb(230 213 215);     /* research feature card background */
+  --button-grey: rgb(201 211 204);       /* primary button background */
+  --link-color: rgb(130 64 76);          /* mauve link */
+  --link-hover-color: rgb(71 107 82);    /* green link hover */
+  --hero-text-color: rgb(255 249 245);   /* light hero copy over dark video */
+
+  /* spacing */
+  --nav-height: 96px;
+  --content-max-width: 1280px;
+
+  /* heading sizes (desktop) */
+  --heading-size-xxl: 48px;
+  --heading-size-hero: 64px;
+  --heading-size-xl: 40px;
+  --heading-size-l: 24px;
+  --heading-size-m: 20px;
+  --heading-size-s: 18px;
+  --heading-size-xs: 16px;
+}

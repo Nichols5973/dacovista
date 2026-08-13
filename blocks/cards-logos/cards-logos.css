@@ -1,0 +1,60 @@
+/* cards-logos — single row of institution logos on the cream 'secondary' band.
+   Values extracted from covista.com homepage computed styles:
+   - grid: 5 equal columns (desktop), column-gap 16px, row-gap 24px, vertically centered
+   - logos are width-driven (fill column, ~16px horizontal inset), height auto keeps ratio
+   - transparent cells, no borders; section band handled by .section.secondary */
+
+.cards-logos > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* mobile: 2 per row */
+  gap: 24px 16px;
+  align-items: center; /* vertically center logos of differing heights per row */
+}
+
+.cards-logos > ul > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+}
+
+/* image cell — 16px horizontal inset around each logo (source: 256.8px cell / 224.8px img) */
+.cards-logos .cards-logos-card-image {
+  width: 100%;
+  padding: 0 16px;
+  line-height: 0;
+  text-align: center;
+}
+
+.cards-logos .cards-logos-card-image p {
+  margin: 0;
+}
+
+.cards-logos .cards-logos-card-image a {
+  display: block;
+}
+
+/* logo image — width-driven, height auto preserves each logo's aspect ratio */
+.cards-logos > ul > li img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 0;
+}
+
+/* empty authored text cell — hide it */
+.cards-logos .cards-logos-card-body {
+  display: none;
+}
+
+@media (width >= 900px) {
+  .cards-logos > ul {
+    grid-template-columns: repeat(5, 1fr); /* desktop: 5 in a row */
+  }
+}

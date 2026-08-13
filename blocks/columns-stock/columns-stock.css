@@ -1,0 +1,219 @@
+/* columns-stock — 50/50 stock band on the cream 'secondary' section.
+   Values extracted from covista.com computed styles. */
+
+/* The section.secondary already paints the cream band; keep the block transparent. */
+.columns-stock {
+  color: var(--text-color);
+}
+
+/* rows / cells — mobile-first: stacked single column */
+.columns-stock > div {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.columns-stock > div > div {
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   LEFT COLUMN — stock figures
+   --------------------------------------------------------------------------- */
+
+.columns-stock-figures h2 {
+  margin: 0 0 24px;
+  font-family: var(--heading-font-family);
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.6px;
+  color: rgb(184 83 46); /* terracotta stock accent (source computed) */
+}
+
+.columns-stock-figures p {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 29.88px;
+  letter-spacing: -0.27px;
+  color: var(--text-color);
+}
+
+/* symbol row: NYSE on the left, timestamp block right-aligned */
+.columns-stock-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.columns-stock-symbol {
+  white-space: nowrap;
+}
+
+.columns-stock-timestamp {
+  text-align: right;
+}
+
+/* large current price with the terracotta underline rule */
+.columns-stock-figures p.columns-stock-price {
+  margin: 28px 0 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgb(184 83 46);
+  font-family: var(--serif-font-family);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 64px;
+  letter-spacing: -0.27px;
+  color: rgb(184 83 46);
+}
+
+/* change row: label left, value right */
+.columns-stock-change {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 12px !important;
+}
+
+.columns-stock-change-value {
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------------
+   RIGHT COLUMN — image + white callout panel
+   --------------------------------------------------------------------------- */
+
+.columns-stock-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* image */
+.columns-stock-media {
+  margin: 0;
+  order: 0;
+}
+
+.columns-stock-media img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* white callout panel */
+.columns-stock-callout {
+  background-color: var(--background-color);
+  padding: 32px;
+  order: 1;
+}
+
+.columns-stock-callout p {
+  margin: 0 0 18px;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 29.88px;
+  letter-spacing: -0.27px;
+  color: var(--text-color);
+}
+
+.columns-stock-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.columns-stock-callout strong {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}
+
+/* tertiary CTA — peach button with a solid terracotta arrow square */
+main .columns-stock a.button:any-link {
+  position: relative;
+  margin: 4px 38px 0 0; /* room for the detached arrow square */
+  padding: 5px 16px;
+  border: 0;
+  border-radius: 0;
+  background-color: rgb(234 189 173); /* peach (source e-btn--tertiary) */
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.27px;
+  text-decoration: none;
+  overflow: visible;
+}
+
+main .columns-stock a.button:any-link::after {
+  content: "→";
+  position: absolute;
+  top: 0;
+  left: calc(100% + 4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 100%;
+  background-color: rgb(184 83 46); /* terracotta arrow square */
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  line-height: 1;
+}
+
+main .columns-stock a.button:hover,
+main .columns-stock a.button:focus {
+  background-color: rgb(184 83 46);
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------------------
+   DESKTOP — 50/50 two columns
+   --------------------------------------------------------------------------- */
+
+@media (width >= 900px) {
+  .columns-stock > div {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 40px;
+  }
+
+  .columns-stock > div > div {
+    flex: 1;
+  }
+
+  .columns-stock-figures {
+    align-self: center;
+    padding: 24px 40px 24px 0;
+  }
+
+  /* right column: white panel + framed portrait, side by side with slight overlap */
+  .columns-stock-content {
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+  }
+
+  .columns-stock-media {
+    order: 2;
+    flex: 0 0 46%;
+    width: 46%;
+  }
+
+  .columns-stock-media img {
+    height: 420px;
+    border: 8px solid var(--background-color);
+  }
+
+  .columns-stock-callout {
+    order: 1;
+    flex: 1 1 auto;
+    position: relative;
+    z-index: 1;
+    margin-right: -40px;
+    padding: 40px;
+  }
+}

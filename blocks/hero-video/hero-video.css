@@ -1,0 +1,157 @@
+/*
+ * hero-video — full-bleed dark hero.
+ * Design extracted from covista.com homepage (div.homepage-hero):
+ *   full-width banner, background media with a left-weighted dark overlay,
+ *   top-left cream H1, grey squared "Our story" CTA with a green arrow box.
+ *
+ * Decorated EDS DOM:
+ *   .hero-video.block
+ *     > div (row 1) > div (cell) > p>picture>img   + p.button-container>a.button ("Background video" carrier)
+ *     > div (row 2) > div (cell) > h1              + p.button-container>a.button ("Our story")
+ * Row 1 is used as the background image layer; row 2 is the foreground content.
+ */
+
+/* full-bleed: neutralise the section's 1200px content cap + gutter for this block only */
+.hero-video-container .hero-video-wrapper {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-video {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  min-height: 440px;
+  background-color: #000; /* base behind media (source inner bg = rgb(0 0 0)) */
+  color: var(--hero-text-color);
+}
+
+/* --- Background image layer (row 1) --- */
+.hero-video > div:first-child {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+}
+
+.hero-video > div:first-child > div {
+  height: 100%;
+  margin: 0;
+}
+
+.hero-video > div:first-child p {
+  height: 100%;
+  margin: 0;
+}
+
+.hero-video > div:first-child picture {
+  display: block;
+  height: 100%;
+}
+
+.hero-video > div:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* the "Background video" carrier anchor must not render as a visible link */
+.hero-video > div:first-child .button-container {
+  display: none;
+}
+
+/* --- Dark legibility overlay (left-weighted gradient, exact source values) --- */
+.hero-video::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: linear-gradient(
+    92.51deg,
+    rgb(0 0 0 / 50%) 25.26%,
+    rgb(0 0 0 / 2%) 61.29%,
+    rgb(0 0 0 / 0%) 95.23%
+  );
+  pointer-events: none;
+}
+
+/* --- Foreground content (row 2) --- */
+/* stylelint-disable-next-line no-descending-specificity */
+.hero-video > div:last-child {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* text column (source caps the copy at ~41.5% of the content width) */
+.hero-video > div:last-child > div {
+  max-width: 100%;
+}
+
+/* H1 inherits size/weight/line-height/letter-spacing from global styles
+   (--heading-font-size-xxl = 48px desktop / 36px mobile), matching source;
+   only colour + margin differ for the hero. */
+.hero-video h1 {
+  margin: 0;
+  color: var(--hero-text-color);
+}
+
+/* --- "Our story" primary CTA: grey squared button + flush green arrow box --- */
+.hero-video a.button:any-link {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  min-height: 40px;
+  margin: 24px 0 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0 0 0 16px;
+  background-color: var(--button-grey);
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.27px;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hero-video a.button:any-link::after {
+  content: "";
+  align-self: stretch;
+  width: 40px;
+  min-width: 40px;
+  margin-left: 12px;
+  background-color: var(--link-hover-color); /* rgb(71 107 82) — source arrow green */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3Cpolyline points='12 5 19 12 12 19'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+}
+
+.hero-video a.button:hover,
+.hero-video a.button:focus {
+  background-color: var(--brand-green);
+  color: var(--hero-text-color);
+}
+
+@media (width >= 900px) {
+  .hero-video {
+    min-height: 700px; /* source banner height at desktop */
+  }
+
+  .hero-video > div:last-child {
+    padding: 80px 24px; /* source content padding (top-left aligned) */
+  }
+
+  .hero-video > div:last-child > div {
+    max-width: 41.5%; /* source copy column width */
+  }
+}
