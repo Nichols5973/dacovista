@@ -41,13 +41,9 @@ var CustomImportScript = (() => {
     default: () => import_homepage_default
   });
 
-  // tools/importer/parsers/hero-video.js
+  // tools/importer/parsers/hero-image.js
   function parse(element, { document }) {
-    let videoUrl = "";
-    const sources = Array.from(element.querySelectorAll("video source"));
-    const mp4Source = sources.find((s) => (s.getAttribute("src") || "").toLowerCase().includes(".mp4")) || sources.find((s) => (s.getAttribute("src") || "").trim());
-    if (mp4Source) videoUrl = mp4Source.getAttribute("src").trim();
-    const fallbackImg = element.querySelector(".i-mobile-only img, .e-image--mobile img, picture img, img");
+    const heroImg = element.querySelector(".i-mobile-only img, .e-image--mobile img, picture img, img");
     const headingEl = element.querySelector('.p-banner-heading, h1, h2, [class*="banner"][class*="heading"]');
     let heading = null;
     if (headingEl) {
@@ -66,21 +62,15 @@ var CustomImportScript = (() => {
       link.textContent = (a.textContent || "").replace(/\s+/g, " ").trim();
       return link;
     }).filter((a) => a.getAttribute("href") && a.textContent);
-    if (!heading && ctaLinks.length === 0 && !fallbackImg && !videoUrl) {
+    if (!heading && ctaLinks.length === 0 && !heroImg) {
       element.replaceWith(...element.childNodes);
       return;
     }
     const cells = [];
-    if (fallbackImg || videoUrl) {
+    if (heroImg) {
       const imageCell = document.createDocumentFragment();
       imageCell.appendChild(document.createComment(" field:image "));
-      if (fallbackImg) imageCell.appendChild(fallbackImg);
-      if (videoUrl) {
-        const videoAnchor = document.createElement("a");
-        videoAnchor.setAttribute("href", videoUrl);
-        videoAnchor.textContent = "Background video";
-        imageCell.appendChild(videoAnchor);
-      }
+      imageCell.appendChild(heroImg);
       cells.push([imageCell]);
     }
     const textCell = document.createDocumentFragment();
@@ -88,7 +78,7 @@ var CustomImportScript = (() => {
     if (heading) textCell.appendChild(heading);
     ctaLinks.forEach((a) => textCell.appendChild(a));
     cells.push([textCell]);
-    const block = WebImporter.Blocks.createBlock(document, { name: "hero-video", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "hero-image", cells });
     element.replaceWith(block);
   }
 
@@ -422,7 +412,7 @@ var CustomImportScript = (() => {
 
   // tools/importer/import-homepage.js
   var parsers = {
-    "hero-video": parse,
+    "hero-image": parse,
     "cards-stats": parse2,
     "columns-feature": parse3,
     "cards-logos": parse4,
@@ -437,7 +427,7 @@ var CustomImportScript = (() => {
     ],
     blocks: [
       {
-        name: "hero-video",
+        name: "hero-image",
         instances: ["div.homepage-hero"]
       },
       {

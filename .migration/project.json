@@ -2,9 +2,13 @@
   "type": "xwalk",
   "sites": {
     "dacovista": {
+      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json",
       "previewOrg": "nichols5973",
       "previewSite": "dacovista",
-      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json"
+      "aemSitePath": "/content/dacovista",
+      "aemAssetsFolderPath": "/content/dam/dacovista",
+      "aemSiteName": "dacovista",
+      "aemSiteTitle": "dacovista"
     }
   }
 }

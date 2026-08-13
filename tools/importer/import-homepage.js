@@ -2,7 +2,7 @@
 /* global WebImporter */
 
 // PARSER IMPORTS
-import heroVideoParser from './parsers/hero-video.js';
+import heroImageParser from './parsers/hero-image.js';
 import cardsStatsParser from './parsers/cards-stats.js';
 import columnsFeatureParser from './parsers/columns-feature.js';
 import cardsLogosParser from './parsers/cards-logos.js';
@@ -15,7 +15,7 @@ import sectionsTransformer from './transformers/covista-sections.js';
 
 // PARSER REGISTRY
 const parsers = {
-  'hero-video': heroVideoParser,
+  'hero-image': heroImageParser,
   'cards-stats': cardsStatsParser,
   'columns-feature': columnsFeatureParser,
   'cards-logos': cardsLogosParser,
@@ -32,7 +32,7 @@ const PAGE_TEMPLATE = {
   ],
   blocks: [
     {
-      name: 'hero-video',
+      name: 'hero-image',
       instances: ['div.homepage-hero'],
     },
     {

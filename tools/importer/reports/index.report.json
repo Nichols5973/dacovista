@@ -2,11 +2,11 @@
   "status": "success",
   "url": "https://www.covista.com/",
   "path": "index",
-  "timestamp": "2026-08-12T23:20:05.202Z",
+  "timestamp": "2026-08-13T15:32:22.024Z",
   "title": "Home | Covista",
   "template": "homepage",
   "blocks": [
-    "hero-video",
+    "hero-image",
     "cards-stats",
     "columns-feature",
     "columns-feature",

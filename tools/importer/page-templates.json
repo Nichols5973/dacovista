@@ -12,7 +12,7 @@
       "description": "Covista homepage: hero banner with video/overlay + CTA, stats row (institutions/graduates/alumni), research feature card, 'Our institutions' intro + 5 institution logos, supporting-workers feature, careers feature, stock information + investor callout, and a 'News and stories' carousel of article cards.",
       "blocks": [
         {
-          "name": "hero-video",
+          "name": "hero-image",
           "instances": [
             "div.homepage-hero"
           ]

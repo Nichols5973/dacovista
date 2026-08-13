@@ -1,5 +1,5 @@
 {
-  "variantName": "hero-video",
+  "variantName": "hero-image",
   "baseBlock": "hero",
   "version": "1.0.0",
   "created": "2026-08-12T00:00:00.000Z",
@@ -15,14 +15,14 @@
     "imagePattern": "large"
   },
   "contentPattern": {
-    "structure": "background media + heading + 1 CTA",
+    "structure": "background image + heading + 1 CTA",
     "buttonCount": 1,
     "imageCount": 1
   },
   "reuseGuidance": {
     "suitableFor": [
       "homepage hero banners",
-      "full-bleed banners with background image or video",
+      "full-bleed banners with a background image",
       "dark-overlay hero sections with a single CTA"
     ],
     "notSuitableFor": [

@@ -384,7 +384,7 @@
     ]
   },
   {
-    "id": "hero-video",
+    "id": "hero-image",
     "fields": [
       {
         "component": "reference",
