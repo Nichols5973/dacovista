@@ -68,6 +68,24 @@ If you prefer to author interactively rather than import:
 > URLs. If your governance requires assets in the AEM DAM, upload them and update the
 > `image=` / `media_image=` attributes (or re-point in Universal Editor) before publishing.
 
+### Universal Editor rendering notes (header logo & fonts)
+
+Two AEM-specific fixes are already baked into the current code/JCR:
+
+- **Header colors/fonts:** `blocks/header/header.css` and `blocks/hero-image/hero-image.css`
+  now include literal fallbacks on every brand token (e.g.
+  `color: var(--hero-text-color, rgb(255 249 245))`). Without these, the Universal Editor
+  canvas — where the `@import`ed `brand.css` tokens may not resolve — rendered the nav text
+  black and dropped the green bar. The fallbacks guarantee the cream text / green bar / brand
+  fonts regardless of token resolution.
+- **Logo image:** the nav/footer logo is authored as a **standalone image**
+  (`![Covista](…cv_logo.svg)`), not an image wrapped in a link. `md2jcr` drops the image when
+  it is wrapped in a link (`[![…](…)](/)`), leaving an empty button — which is why the logo
+  appeared missing/black in UE. As standalone images they convert to proper `<image>` JCR
+  nodes. Trade-off: the logo is not click-to-home in AEM; re-add a link in UE if desired.
+- The header logo SVG (`cv_logo.svg`) is white (`fill="#FFF9F5"`) by design — it sits on the
+  green bar. If you ever place it on a light background, swap to a dark-fill variant.
+
 ---
 
 ## Publish (after content is in Author)

@@ -24,7 +24,7 @@
   overflow: hidden;
   min-height: 440px;
   background-color: #000; /* base behind media (source inner bg = rgb(0 0 0)) */
-  color: var(--hero-text-color);
+  color: var(--hero-text-color, rgb(255 249 245));
 }
 
 /* --- Background image layer (row 1) --- */
@@ -93,7 +93,7 @@
    only colour + margin differ for the hero. */
 .hero-image h1 {
   margin: 0;
-  color: var(--hero-text-color);
+  color: var(--hero-text-color, rgb(255 249 245));
 }
 
 /* --- "Our story" primary CTA: grey squared button + flush green arrow box --- */
@@ -107,9 +107,9 @@
   border: 0;
   border-radius: 0;
   padding: 0 0 0 16px;
-  background-color: var(--button-grey);
-  color: var(--text-color);
-  font-family: var(--heading-font-family);
+  background-color: var(--button-grey, rgb(201 211 204));
+  color: var(--text-color, #000);
+  font-family: var(--heading-font-family, "acumin-pro-wide-medium", helvetica, arial, sans-serif);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.27px;
@@ -124,7 +124,7 @@
   width: 40px;
   min-width: 40px;
   margin-left: 12px;
-  background-color: var(--link-hover-color); /* rgb(71 107 82) — source arrow green */
+  background-color: var(--link-hover-color, rgb(71 107 82)); /* rgb(71 107 82) — source arrow green */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3Cpolyline points='12 5 19 12 12 19'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
@@ -133,8 +133,8 @@
 
 .hero-image a.button:hover,
 .hero-image a.button:focus {
-  background-color: var(--brand-green);
-  color: var(--hero-text-color);
+  background-color: var(--brand-green, rgb(27 73 41));
+  color: var(--hero-text-color, rgb(255 249 245));
 }
 
 @media (width >= 900px) {

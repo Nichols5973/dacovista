@@ -3,7 +3,7 @@
 
 ---
 
-[![Covista](https://www.covista.com/themes/custom/cv_base/images/svg/cv_logo.svg)](/)
+![Covista](https://www.covista.com/themes/custom/cv_base/images/svg/cv_logo.svg)
 
 ---
 

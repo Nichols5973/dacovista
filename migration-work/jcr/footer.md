@@ -1,4 +1,4 @@
-[![Covista](https://www.covista.com/themes/custom/cv_base/images/svg/cv_logo_mark.svg)](/)
+![Covista](https://www.covista.com/themes/custom/cv_base/images/svg/cv_logo_mark.svg)
 
 233 S. Wacker Drive, Suite 800
 Chicago, IL, 60606
