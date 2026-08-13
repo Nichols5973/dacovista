@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0" jcr:primaryType="cq:Page">
+  <jcr:content cq:template="/libs/core/franklin/templates/page" sling:resourceType="core/franklin/components/page/v1/page" jcr:primaryType="cq:PageContent" jcr:title="Home | Covista" jcr:description="Covista is America's largest healthcare educator, training 24,000+ healthcare graduates annually and expanding access to healthcare careers to address workforce needs." modelFields="[jcr:title,jcr:description,keywords]">
+    <root jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/root/v1/root">
+      <section sling:resourceType="core/franklin/components/section/v1/section" jcr:primaryType="nt:unstructured" model="section" modelFields="[name,style]">
+        <block sling:resourceType="core/franklin/components/block/v1/block" jcr:primaryType="nt:unstructured" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2026-02/homepage_hero.png?itok=Iv81DVUM" imageAlt="A healthcare professional wearing green scrubs is standing outside a modern building." model="hero-image" modelFields="[image,imageAlt,text]" name="Hero Image" text="&lt;p&gt;&lt;h1&gt;The Talent to Transform Healthcare&lt;/h1&gt;&lt;/p&gt;&lt;p&gt;&lt;a href&#x3D;&quot;/our-story&quot;&gt;Our story&lt;/a&gt;&lt;/p&gt;"></block>
+        <block_1 sling:resourceType="core/franklin/components/block/v1/block" jcr:primaryType="nt:unstructured" filter="cards-stats" name="Cards Stats">
+          <item_0 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Card" model="card" modelFields="[image,text]" text="&lt;p&gt;&lt;h3&gt;5&lt;/h3&gt;&lt;/p&gt;&lt;p&gt;post-secondary institutions&lt;/p&gt;"></item_0>
+          <item_1 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Card" model="card" modelFields="[image,text]" text="&lt;p&gt;&lt;h3&gt;26K&lt;/h3&gt;&lt;/p&gt;&lt;p&gt;healthcare graduates a year&lt;/p&gt;"></item_1>
+          <item_2 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Card" model="card" modelFields="[image,text]" text="&lt;p&gt;&lt;h3&gt;300K+&lt;/h3&gt;&lt;/p&gt;&lt;p&gt;healthcare alumni practicing worldwide&lt;/p&gt;"></item_2>
+        </block_1>
+        <columns sling:resourceType="core/franklin/components/columns/v1/columns" jcr:primaryType="nt:unstructured" rows="1" columns="2">
+          <row1 jcr:primaryType="nt:unstructured">
+            <col1 jcr:primaryType="nt:unstructured">
+              <image sling:resourceType="core/franklin/components/image/v1/image" jcr:primaryType="nt:unstructured" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2026-01/adtalem_projsterling_healthcare_stock_getty124205743.jpg?itok&#x3D;Rm3si0kF" imageAlt="Two medical professionals in green scrubs looking at patient board."/>
+            </col1>
+            <col2 jcr:primaryType="nt:unstructured">
+              <title sling:resourceType="core/franklin/components/title/v1/title" jcr:primaryType="nt:unstructured" title="Covista Care Capacity Monitor Research" titleType="h2"/>
+              <text sling:resourceType="core/franklin/components/text/v1/text" jcr:primaryType="nt:unstructured" text="&lt;p&gt;Where America&#x27;s healthcare workforce gaps hit hardest—and
+                    why it matters for patient care.&lt;/p&gt;&lt;p&gt;Explore workforce dynamics across all 50 states and
+                    specialties. Uncover what&#x27;s driving shortages in your
+                    region and where opportunities exist to expand care
+                    capacity.&lt;/p&gt;"/>
+              <button sling:resourceType="core/franklin/components/button/v1/button" jcr:primaryType="nt:unstructured" link="/research" linkText="Explore the data"/>
+            </col2>
+          </row1>
+        </columns>
+      </section>
+      <section_1 sling:resourceType="core/franklin/components/section/v1/section" jcr:primaryType="nt:unstructured" style="[secondary]" model="section" modelFields="[name,style]">
+        <title sling:resourceType="core/franklin/components/title/v1/title" jcr:primaryType="nt:unstructured" title="Our institutions" titleType="h2"/>
+        <text sling:resourceType="core/franklin/components/text/v1/text" jcr:primaryType="nt:unstructured" text="&lt;p&gt;Our five accredited institutions help open doors to healthcare careers for those who never thought it was possible.&lt;/p&gt;"/>
+        <block_1 sling:resourceType="core/franklin/components/block/v1/block" jcr:primaryType="nt:unstructured" filter="cards-logos" name="Cards Logos">
+          <item_0 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Card" model="card" modelFields="[image,text]" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2025-12/auc_vertical_logo.png?itok=fLJPSYz7"></item_0>
+          <item_1 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Card" model="card" modelFields="[image,text]" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2025-12/chamberlain_university_vertical_logo.png?itok=zbPl4F4X"></item_1>
+          <item_2 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Card" model="card" modelFields="[image,text]" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2025-12/rusm_vertical_logo.png?itok=WFhm_zzg"></item_2>
+          <item_3 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Card" model="card" modelFields="[image,text]" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2025-12/rusvm_vertical_logo.png?itok=myRS60Dp"></item_3>
+          <item_4 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Card" model="card" modelFields="[image,text]" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2025-12/walden_logo_vertical_cyan_1.png?itok=vaRAymwV"></item_4>
+        </block_1>
+      </section_1>
+      <section_2 sling:resourceType="core/franklin/components/section/v1/section" jcr:primaryType="nt:unstructured" style="[secondary]" model="section" modelFields="[name,style]">
+        <button sling:resourceType="core/franklin/components/button/v1/button" jcr:primaryType="nt:unstructured" link="/our-institutions/institutions" linkText="Learn more"/>
+        <columns sling:resourceType="core/franklin/components/columns/v1/columns" jcr:primaryType="nt:unstructured" rows="1" columns="2">
+          <row1 jcr:primaryType="nt:unstructured">
+            <col1 jcr:primaryType="nt:unstructured">
+              <image sling:resourceType="core/franklin/components/image/v1/image" jcr:primaryType="nt:unstructured" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_1_1_crop_md/public/2026-01/home_page_supporting_healthcare_workers_nationwide.jpg?itok&#x3D;5-001bQG" imageAlt="Male medical professional in green scrubs with patient"/>
+            </col1>
+            <col2 jcr:primaryType="nt:unstructured">
+              <title sling:resourceType="core/franklin/components/title/v1/title" jcr:primaryType="nt:unstructured" title="Supporting healthcare workers nationwide" titleType="h2"/>
+              <text sling:resourceType="core/franklin/components/text/v1/text" jcr:primaryType="nt:unstructured" text="&lt;p&gt;America faces a healthcare workforce crisis that threatens access to
+                    care for millions. Through &lt;em&gt;&lt;strong&gt;Covista Open Doors&lt;/strong&gt;&lt;/em&gt;, our multi-year
+                    impact commitment to build and sustain the healthcare workforce, we&#x27;re
+                    opening doors for current and future healthcare workers during the
+                    moments that matter most.&lt;/p&gt;"/>
+              <button sling:resourceType="core/franklin/components/button/v1/button" jcr:primaryType="nt:unstructured" link="/our-impact" linkText="Learn about our impact"/>
+            </col2>
+          </row1>
+        </columns>
+        <columns_1 sling:resourceType="core/franklin/components/columns/v1/columns" jcr:primaryType="nt:unstructured" rows="1" columns="2">
+          <row1 jcr:primaryType="nt:unstructured">
+            <col1 jcr:primaryType="nt:unstructured">
+              <title sling:resourceType="core/franklin/components/title/v1/title" jcr:primaryType="nt:unstructured" title="Careers that blend performance and purpose" titleType="h2"/>
+              <text sling:resourceType="core/franklin/components/text/v1/text" jcr:primaryType="nt:unstructured" text="&lt;p&gt;We believe doing exceptional work and making a meaningful
+                    difference for students and society aren’t separate
+                    goals—they are one and the same.&lt;/p&gt;"/>
+              <button sling:resourceType="core/franklin/components/button/v1/button" jcr:primaryType="nt:unstructured" link="/join-us" linkText="Explore opportunities"/>
+            </col1>
+            <col2 jcr:primaryType="nt:unstructured">
+              <image sling:resourceType="core/franklin/components/image/v1/image" jcr:primaryType="nt:unstructured" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2025-12/rectangle_4.png?itok&#x3D;_kd8fITk" imageAlt="Three people at a desk"/>
+            </col2>
+          </row1>
+        </columns_1>
+        <columns_2 sling:resourceType="core/franklin/components/columns/v1/columns" jcr:primaryType="nt:unstructured" rows="1" columns="2">
+          <row1 jcr:primaryType="nt:unstructured">
+            <col1 jcr:primaryType="nt:unstructured">
+              <title sling:resourceType="core/franklin/components/title/v1/title" jcr:primaryType="nt:unstructured" title="Stock information" titleType="h2"/>
+              <text sling:resourceType="core/franklin/components/text/v1/text" jcr:primaryType="nt:unstructured" text="&lt;p&gt;NYSE : CVSA&lt;/p&gt;&lt;p&gt;As of Aug. 13, 2026 2:08 AM&lt;/p&gt;&lt;p&gt;Minimum 20 minute delay.&lt;/p&gt;&lt;p&gt;$128.22&lt;/p&gt;&lt;p&gt;Change (%) 1.38&lt;/p&gt;"/>
+            </col1>
+            <col2 jcr:primaryType="nt:unstructured">
+              <image sling:resourceType="core/franklin/components/image/v1/image" jcr:primaryType="nt:unstructured" image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2026-01/home_page_stock_information.jpg?itok&#x3D;jG9Ni_0n" imageAlt="Man in tan sweater"/>
+              <text sling:resourceType="core/franklin/components/text/v1/text" jcr:primaryType="nt:unstructured" text="&lt;p&gt;&lt;strong&gt;See the story behind the numbers&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Learn why investors are choosing Covista.&lt;/p&gt;"/>
+              <button sling:resourceType="core/franklin/components/button/v1/button" jcr:primaryType="nt:unstructured" link="https://investors.covista.com" linkText="View our financials"/>
+            </col2>
+          </row1>
+        </columns_2>
+        <title sling:resourceType="core/franklin/components/title/v1/title" jcr:primaryType="nt:unstructured" title="News and stories" titleType="h2"/>
+        <block_1 sling:resourceType="core/franklin/components/block/v1/block" jcr:primaryType="nt:unstructured" filter="carousel-news" name="Carousel News">
+          <item_0 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Carousel News Slide" model="carousel-news-item" modelFields="[media_image,media_imageAlt,content_text]" media_image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2026-07/cccm_header_nurse.jpg?itok=iikAHCz-" media_imageAlt="Covista Care Capacity Monitor" content_text="&lt;p&gt;Covista | Covista Care Capacity Monitor&lt;/p&gt;&lt;p&gt;&lt;a href&#x3D;&quot;/news/examining-the-healthcare-salary-gap-fixing-it-will-take-more-than-a-bigger-paycheck&quot;&gt;Examining the Healthcare Salary Gap: Fixing It Will Take More Than a Bigger Paycheck&lt;/a&gt;&lt;/p&gt;"></item_0>
+          <item_1 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Carousel News Slide" model="carousel-news-item" modelFields="[media_image,media_imageAlt,content_text]" media_image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2026-07/doctor_and_two_nurses_with_patient.jpg?itok=1bE4jRkJ" media_imageAlt="doctor and two nurses with patient" content_text="&lt;p&gt;Covista | Chamberlain&lt;/p&gt;&lt;p&gt;&lt;a href&#x3D;&quot;/news/closing-the-gap-chamberlains-new-campus-targets-utahs-nursing-shortage&quot;&gt;Closing the Gap: Chamberlain’s New Campus Targets Utah&#x27;s Nursing Shortage&lt;/a&gt;&lt;/p&gt;"></item_1>
+          <item_2 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Carousel News Slide" model="carousel-news-item" modelFields="[media_image,media_imageAlt,content_text]" media_image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2026-07/s.beard_mckinsey_inverview.jpg?itok=RiCoQV1P" media_imageAlt="Students standing outside building" content_text="&lt;p&gt;AI | Impact&lt;/p&gt;&lt;p&gt;&lt;a href&#x3D;&quot;/news/chairman-and-ceo-steve-beard-interview-with-mckinsey-how-covista-is-changing-education-for-healthcare-professionals&quot;&gt;Chairman and CEO Steve Beard Interview with McKinsey: How Covista Is Changing Education For Healthcare Professionals&lt;/a&gt;&lt;/p&gt;"></item_2>
+          <item_3 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Carousel News Slide" model="carousel-news-item" modelFields="[media_image,media_imageAlt,content_text]" media_image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2026-07/covista-community-rounds-event-cropped.jpg?itok=RMCIt16J" media_imageAlt="Covista Community Rounds" content_text="&lt;p&gt;Covista | Covista Foundation&lt;/p&gt;&lt;p&gt;&lt;a href&#x3D;&quot;/news/covista-open-doors-investing-in-americas-healthcare-workforce&quot;&gt;Covista Open Doors: Investing in America&#x27;s Healthcare Workforce&lt;/a&gt;&lt;/p&gt;"></item_3>
+          <item_4 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Carousel News Slide" model="carousel-news-item" modelFields="[media_image,media_imageAlt,content_text]" media_image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2026-07/web_sb_newsletter_1550x665.jpg?itok=TtwyBuif" media_imageAlt="Steve Beard" content_text="&lt;p&gt;AI | Purpose at Scale&lt;/p&gt;&lt;p&gt;&lt;a href&#x3D;&quot;/news/from-the-desk-of-steve-beard-introducing-purpose-at-scale&quot;&gt;From the Desk of Steve Beard: Introducing Purpose at Scale&lt;/a&gt;&lt;/p&gt;"></item_4>
+          <item_5 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Carousel News Slide" model="carousel-news-item" modelFields="[media_image,media_imageAlt,content_text]" media_image="https://www.covista.com/sites/g/files/krcnkv471/files/styles/atge_default_md/public/2026-07/alumni_web.jpg?itok=-i5dyIv1" media_imageAlt="400k alumni, 100k students, 28k graduates in FY 26" content_text="&lt;p&gt;Covista | Alumni&lt;/p&gt;&lt;p&gt;&lt;a href&#x3D;&quot;/news/covista-meets-new-milestone-with-400k-alumni-100k-students-and-28k-graduates-in-2026&quot;&gt;Covista Meets New Milestone with 400k Alumni, 100K Students and 28K Graduates in 2026&lt;/a&gt;&lt;/p&gt;"></item_5>
+        </block_1>
+      </section_2>
+      <section_3 sling:resourceType="core/franklin/components/section/v1/section" jcr:primaryType="nt:unstructured" model="section" modelFields="[name,style]"></section_3>
+    </root>
+  </jcr:content>
+</jcr:root>
