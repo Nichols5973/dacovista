@@ -1,0 +1,36 @@
+{
+  "variantName": "content-fragment",
+  "baseBlock": "content-fragment",
+  "version": "1.0.0",
+  "created": "2026-08-13T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "",
+    "originPage": "New library block (author request)",
+    "blockPosition": "any"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "comfortable",
+    "purpose": "content-fragment",
+    "imagePattern": "optional"
+  },
+  "contentPattern": {
+    "structure": "AEM Content Fragment reference (aem-content-fragment picker); fields rendered generically",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "embedding any AEM Content Fragment on a page",
+      "reusable structured content authored once and referenced across pages"
+    ],
+    "notSuitableFor": [
+      "one-off inline content that isn't a Content Fragment"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [],
+    "reuseCount": 0,
+    "lastUsed": "2026-08-13T00:00:00.000Z"
+  }
+}

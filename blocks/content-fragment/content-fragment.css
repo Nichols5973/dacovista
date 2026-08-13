@@ -1,0 +1,58 @@
+/*
+ * content-fragment — renders an AEM Content Fragment's fields, styled with
+ * the Covista brand tokens (literal fallbacks so it also renders correctly in
+ * the Universal Editor canvas, where brand.css tokens may not resolve).
+ */
+
+.content-fragment.block {
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: var(--body-font-family, "acumin-pro-wide-light", helvetica, arial, sans-serif);
+  color: var(--text-color, #000);
+}
+
+.content-fragment .content-fragment-inner > * {
+  margin: 0 0 16px;
+}
+
+.content-fragment .content-fragment-inner > *:last-child {
+  margin-bottom: 0;
+}
+
+.content-fragment h2,
+.content-fragment h3 {
+  font-family: var(--heading-font-family, "acumin-pro-wide-medium", helvetica, arial, sans-serif);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--brand-green, rgb(27 73 41));
+}
+
+.content-fragment p,
+.content-fragment .cf-richtext {
+  font-size: 18px;
+  line-height: 1.66;
+  color: var(--text-color, #000);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.content-fragment .cf-richtext > * {
+  margin: 0 0 16px;
+}
+
+.content-fragment .cf-richtext a {
+  color: var(--link-color, rgb(130 64 76));
+  text-decoration: underline;
+}
+
+.content-fragment .cf-richtext a:hover {
+  color: var(--link-hover-color, rgb(71 107 82));
+}
+
+.content-fragment img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

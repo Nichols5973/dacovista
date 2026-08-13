@@ -333,6 +333,17 @@
     ]
   },
   {
+    "id": "content-fragment",
+    "fields": [
+      {
+        "component": "aem-content-fragment",
+        "name": "reference",
+        "label": "Content Fragment",
+        "description": "Select a Content Fragment to render on the page."
+      }
+    ]
+  },
+  {
     "id": "embed",
     "fields": [
       {
