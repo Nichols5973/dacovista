@@ -44,6 +44,19 @@ function closeOnEscape(nav, navSections) {
   });
 }
 
+/** Build the decorative search affordance (magnifying-glass icon). */
+function buildSearch() {
+  const search = document.createElement('div');
+  search.className = 'nav-search';
+  search.innerHTML = `<button type="button" aria-label="Search">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>`;
+  return search;
+}
+
 /**
  * Loads and decorates the header nav.
  * @param {Element} block the header block element
@@ -75,30 +88,29 @@ export default async function decorate(block) {
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  // brand: strip button decoration off the logo link
+  const navUtility = nav.querySelector('.nav-utility');
   const navBrand = nav.querySelector('.nav-brand');
+  const navSections = nav.querySelector('.nav-sections');
+
+  // brand: strip button decoration off the logo link
   if (navBrand) {
     navBrand.querySelectorAll('.button-container').forEach((bc) => bc.classList.remove('button-container'));
     navBrand.querySelectorAll('a.button').forEach((a) => a.classList.remove('button'));
   }
 
   // main nav: mark items with a submenu as dropdowns, wire interactions
-  const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
       if (navSection.querySelector(':scope > ul')) {
         navSection.classList.add('nav-drop');
         navSection.setAttribute('aria-expanded', 'false');
       }
-      // strip any button decoration inside the nav
       navSection.querySelectorAll('.button-container').forEach((bc) => bc.classList.remove('button-container'));
       navSection.querySelectorAll('a.button').forEach((a) => a.classList.remove('button'));
 
-      // click to toggle (mobile primarily; desktop uses hover via CSS but click also works)
       navSection.addEventListener('click', (e) => {
         if (!navSection.classList.contains('nav-drop')) return;
-        // let clicks on the submenu links through
-        if (e.target.closest(':scope > ul')) return;
+        if (e.target.closest(':scope > ul')) return; // let submenu link clicks through
         if (isDesktop.matches) return; // desktop opens on hover
         e.preventDefault();
         const expanded = navSection.getAttribute('aria-expanded') === 'true';
@@ -115,9 +127,24 @@ export default async function decorate(block) {
       <span class="nav-hamburger-icon"></span>
     </button>`;
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.prepend(hamburger);
 
-  // reset state on breakpoint change (prevents desktop layout stuck open)
+  const search = buildSearch();
+
+  // Compose two full-width bands: cream utility strip + green main bar.
+  const utilityBar = document.createElement('div');
+  utilityBar.className = 'nav-utility-bar';
+  if (navUtility) utilityBar.append(navUtility);
+
+  const mainBar = document.createElement('div');
+  mainBar.className = 'nav-main-bar';
+  if (navBrand) mainBar.append(navBrand);
+  if (navSections) mainBar.append(navSections);
+  mainBar.append(search);
+  mainBar.append(hamburger);
+
+  nav.append(utilityBar, mainBar);
+
+  // reset state on breakpoint change
   const applyBreakpoint = () => {
     if (isDesktop.matches) {
       document.body.style.overflowY = '';

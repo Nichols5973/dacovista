@@ -1,100 +1,100 @@
-/* Covista header — transparent bar over hero, utility + brand + megamenu nav */
+/* Covista header — cream utility strip + solid brand-green main bar, above the hero */
 
-/* Overlay the header on top of the hero (do not reserve layout height). */
+/* stylelint-disable no-descending-specificity -- selectors below target distinct elements; order follows visual layout */
+
 body > header {
-  height: 0;
+  height: auto;
 }
 
 header .nav-wrapper {
-  position: absolute;
-  inset: 0 0 auto;
+  position: relative;
   z-index: 20;
   width: 100%;
-  background-color: transparent;
+  background-color: var(--brand-green);
 }
 
 header nav {
-  box-sizing: border-box;
-  display: grid;
-  grid-template-areas:
-    'utility utility'
-    'brand sections';
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 24px;
   font-family: var(--body-font-family);
 }
 
-/* --- Utility bar (top, green links) --- */
-header nav .nav-utility {
-  grid-area: utility;
-  display: flex;
-  justify-content: flex-end;
-  gap: 24px;
-  padding: 10px 0 6px;
-}
-
-header nav .nav-utility p {
-  margin: 0;
-}
-
-header nav .nav-utility a {
-  color: var(--brand-green);
-  font-family: var(--heading-font-family);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-header nav .nav-utility a:hover {
-  text-decoration: underline;
-}
-
-/* --- Brand (logo) --- */
-header nav .nav-brand {
-  grid-area: brand;
-  display: flex;
-  align-items: center;
-}
-
-header nav .nav-brand p {
-  margin: 0;
-}
-
-header nav .nav-brand img {
-  display: block;
-  width: auto;
-  height: 44px;
-}
-
-/* --- Main nav (megamenu) --- */
-header nav .nav-sections {
-  grid-area: sections;
-}
-
-header nav .nav-sections ul {
+header nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-header nav .nav-sections > ul {
+header nav p {
+  margin: 0;
+}
+
+/* ---------- Utility strip (cream, small green links, right-aligned) ---------- */
+header .nav-utility-bar {
+  background-color: var(--secondary-cream);
+}
+
+header .nav-utility {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 6px 24px;
+}
+
+header .nav-utility a {
+  color: var(--brand-green);
+  font-family: var(--heading-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+header .nav-utility a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Main bar (solid brand green) ---------- */
+header .nav-main-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 24px;
+}
+
+/* Brand / logo */
+header .nav-brand {
+  flex: 0 0 auto;
+}
+
+header .nav-brand img {
+  display: block;
+  width: auto;
+  height: 40px;
+}
+
+/* Main nav items */
+header .nav-sections {
+  flex: 1 1 auto;
+}
+
+header .nav-sections > ul {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 28px;
+  gap: 32px;
 }
 
-header nav .nav-sections > ul > li {
+header .nav-sections > ul > li {
   position: relative;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-header nav .nav-sections > ul > li > a {
+header .nav-sections > ul > li > a {
   display: inline-block;
   padding: 8px 0;
   color: var(--hero-text-color);
@@ -106,12 +106,12 @@ header nav .nav-sections > ul > li > a {
   white-space: nowrap;
 }
 
-header nav .nav-sections > ul > li > a:hover {
+header .nav-sections > ul > li > a:hover {
   text-decoration: underline;
 }
 
-/* dropdown panels */
-header nav .nav-sections > ul > li > ul {
+/* Dropdown panels */
+header .nav-sections > ul > li > ul {
   display: none;
   position: absolute;
   top: 100%;
@@ -119,21 +119,20 @@ header nav .nav-sections > ul > li > ul {
   min-width: 240px;
   padding: 12px 0;
   background-color: var(--secondary-cream);
-  box-shadow: 0 12px 28px rgb(0 0 0 / 12%);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 18%);
 }
 
-header nav .nav-sections > ul > li[aria-expanded='true'] > ul {
+header .nav-sections > ul > li[aria-expanded='true'] > ul {
   display: block;
 }
 
 @media (width >= 900px) {
-  header nav .nav-sections > ul > li.nav-drop:hover > ul {
+  header .nav-sections > ul > li.nav-drop:hover > ul {
     display: block;
   }
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-header nav .nav-sections > ul > li > ul > li > a {
+header .nav-sections > ul > li > ul > li > a {
   display: block;
   padding: 8px 24px;
   color: var(--brand-green);
@@ -145,18 +144,42 @@ header nav .nav-sections > ul > li > ul > li > a {
   white-space: nowrap;
 }
 
-header nav .nav-sections > ul > li > ul > li > a:hover {
-  background-color: rgb(27 73 41 / 6%);
+header .nav-sections > ul > li > ul > li > a:hover {
+  background-color: rgb(27 73 41 / 8%);
   text-decoration: underline;
 }
 
-/* --- Hamburger (hidden on desktop) --- */
-header nav .nav-hamburger {
-  grid-area: brand;
-  display: none;
+/* Search affordance */
+header .nav-search {
+  flex: 0 0 auto;
 }
 
-header nav .nav-hamburger button {
+header .nav-search button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--hero-text-color);
+  cursor: pointer;
+}
+
+header .nav-search button:hover {
+  opacity: 0.8;
+}
+
+/* ---------- Hamburger (mobile only) ---------- */
+header .nav-hamburger {
+  display: none;
+  flex: 0 0 auto;
+}
+
+header .nav-hamburger button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,9 +193,9 @@ header nav .nav-hamburger button {
   cursor: pointer;
 }
 
-header nav .nav-hamburger-icon,
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
+header .nav-hamburger-icon,
+header .nav-hamburger-icon::before,
+header .nav-hamburger-icon::after {
   box-sizing: border-box;
   display: block;
   position: relative;
@@ -181,61 +204,64 @@ header nav .nav-hamburger-icon::after {
   background-color: var(--hero-text-color);
 }
 
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
+header .nav-hamburger-icon::before,
+header .nav-hamburger-icon::after {
   content: '';
   position: absolute;
   left: 0;
 }
 
-header nav .nav-hamburger-icon::before { top: -7px; }
-header nav .nav-hamburger-icon::after { top: 7px; }
+header .nav-hamburger-icon::before { top: -7px; }
+header .nav-hamburger-icon::after { top: 7px; }
 
-/* --- Mobile layout --- */
+/* ---------- Mobile ---------- */
 @media (width < 900px) {
-  header nav {
-    grid-template-areas:
-      'utility utility'
-      'brand hamburger';
-    grid-template-columns: 1fr auto;
-    padding: 0 16px;
-  }
-
-  header nav .nav-hamburger {
-    grid-area: hamburger;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  header nav .nav-utility {
+  header .nav-utility {
     justify-content: flex-start;
     gap: 16px;
   }
 
-  header nav .nav-sections {
-    grid-area: 2 / 1 / 3 / 3;
+  header .nav-hamburger {
+    display: flex;
+    order: 3;
+    margin-left: auto;
+  }
+
+  header .nav-search {
+    order: 2;
+  }
+
+  header .nav-main-bar {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 12px 16px;
+  }
+
+  header .nav-sections {
+    order: 4;
+    flex-basis: 100%;
     display: none;
-    margin-top: 8px;
   }
 
   header nav[aria-expanded='true'] .nav-sections {
     display: block;
   }
 
-  header nav .nav-sections > ul {
+  header .nav-sections > ul {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
+    margin: 8px -16px -12px;
     padding: 8px 0;
     background-color: var(--secondary-cream);
   }
 
-  header nav .nav-sections > ul > li > a {
+  header .nav-sections > ul > li > a {
     padding: 12px 16px;
     color: var(--brand-green);
   }
 
-  header nav .nav-sections > ul > li > ul {
+  header .nav-sections > ul > li > ul {
     display: none;
     position: static;
     min-width: 0;
@@ -244,11 +270,11 @@ header nav .nav-hamburger-icon::after { top: 7px; }
     box-shadow: none;
   }
 
-  header nav .nav-sections > ul > li[aria-expanded='true'] > ul {
+  header .nav-sections > ul > li[aria-expanded='true'] > ul {
     display: block;
   }
 
-  header nav .nav-sections > ul > li > ul > li > a {
+  header .nav-sections > ul > li > ul > li > a {
     padding: 8px 32px;
   }
 }
