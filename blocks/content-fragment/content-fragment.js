@@ -224,6 +224,32 @@ async function fetchCf(url) {
   }
 }
 
+/**
+ * Reorganise a flat .content-fragment-inner into a two-column card:
+ *   .cf-media   (the first image / picture)
+ *   .cf-content (heading, subheading, body, CTA — everything else)
+ * Matches the reference card layout (image left, text right, CTA button).
+ * If there's no image, leaves a single content column (CSS falls back to 1-up).
+ */
+function layoutAsCard(inner) {
+  const media = document.createElement('div');
+  media.className = 'cf-media';
+  const content = document.createElement('div');
+  content.className = 'cf-content';
+
+  Array.from(inner.children).forEach((child) => {
+    const isImage = child.tagName === 'PICTURE' || child.tagName === 'IMG'
+      || child.querySelector?.('picture, img');
+    if (isImage && !media.children.length) media.append(child);
+    else content.append(child);
+  });
+
+  inner.textContent = '';
+  if (media.children.length) inner.append(media);
+  inner.append(content);
+  inner.classList.toggle('cf-has-media', !!media.children.length);
+}
+
 export default async function decorate(block) {
   const referencePath = findReferencePath(block);
 
@@ -233,6 +259,7 @@ export default async function decorate(block) {
     inner.className = 'content-fragment-inner';
     while (block.firstElementChild) inner.append(block.firstElementChild);
     block.append(inner);
+    layoutAsCard(inner);
     return;
   }
 
@@ -249,6 +276,7 @@ export default async function decorate(block) {
   if (inner) {
     block.textContent = '';
     block.append(inner);
+    layoutAsCard(inner);
   }
   // If the fetch failed (e.g. CORS/auth in a context that can't reach the DAM),
   // leave the block as-is rather than throwing — avoids a broken author view.

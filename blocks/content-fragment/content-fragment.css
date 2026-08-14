@@ -1,7 +1,7 @@
 /*
- * content-fragment — renders an AEM Content Fragment's fields, styled with
- * the Covista brand tokens (literal fallbacks so it also renders correctly in
- * the Universal Editor canvas, where brand.css tokens may not resolve).
+ * content-fragment — renders an AEM Content Fragment as a two-column feature
+ * card (image left, text right, CTA button), matching the TE Connectivity
+ * reference layout: light grey panel with orange accents.
  */
 
 .content-fragment.block {
@@ -13,46 +13,137 @@
   color: var(--text-color, #000);
 }
 
-.content-fragment .content-fragment-inner > * {
+/* Card shell */
+.content-fragment .content-fragment-inner {
+  display: block;
+  background-color: #eaeaea; /* TE light-grey panel */
+}
+
+/* Two-column layout when a media image is present */
+.content-fragment .content-fragment-inner.cf-has-media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+/* Media column */
+.content-fragment .cf-media {
+  height: 100%;
+}
+
+.content-fragment .cf-media img,
+.content-fragment .cf-media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content column */
+.content-fragment .cf-content {
+  padding: 48px 56px;
+}
+
+.content-fragment .cf-content > * {
   margin: 0 0 16px;
 }
 
-.content-fragment .content-fragment-inner > *:last-child {
+.content-fragment .cf-content > *:last-child {
   margin-bottom: 0;
 }
 
-.content-fragment h2,
-.content-fragment h3 {
+/* Headline — TE type treatment (heavy, dark) */
+.content-fragment .cf-content h2,
+.content-fragment .cf-content h3 {
   font-family: var(--heading-font-family, "acumin-pro-wide-medium", helvetica, arial, sans-serif);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-  color: var(--brand-green, rgb(27 73 41));
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #1a1a1a;
 }
 
-.content-fragment p,
-.content-fragment .cf-richtext {
-  font-size: 18px;
-  line-height: 1.66;
-  color: var(--text-color, #000);
+/* Orange underline accent under the headline (TE look) */
+.content-fragment .cf-content h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin-top: 12px;
+  background-color: #eb6209; /* TE orange */
+}
+
+/* Subheading — muted grey */
+.content-fragment .cf-content h3 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #6a6a6a;
+}
+
+.content-fragment .cf-content h3::after {
+  display: none;
+}
+
+.content-fragment .cf-content p,
+.content-fragment .cf-content .cf-richtext {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .content-fragment .cf-richtext > * {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
 }
 
-.content-fragment .cf-richtext a {
-  color: var(--link-color, rgb(130 64 76));
-  text-decoration: underline;
+/* CTA — TE orange arrow button */
+.content-fragment .cf-content .button-container {
+  display: inline;
+  margin-top: 8px;
 }
 
-.content-fragment .cf-richtext a:hover {
-  color: var(--link-hover-color, rgb(71 107 82));
+.content-fragment .cf-content a.button:any-link {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 0;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 0;
+  background-color: #eb6209; /* TE orange */
+  color: #fff;
+  font-family: var(--heading-font-family, "acumin-pro-wide-medium", helvetica, arial, sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.content-fragment img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+.content-fragment .cf-content a.button:any-link::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3Cpolyline points='12 5 19 12 12 19'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.content-fragment .cf-content a.button:hover,
+.content-fragment .cf-content a.button:focus {
+  background-color: #c8530a; /* darker orange */
+  color: #fff;
+}
+
+/* Stack to one column on small screens */
+@media (width < 900px) {
+  .content-fragment .content-fragment-inner.cf-has-media {
+    grid-template-columns: 1fr;
+  }
+
+  .content-fragment .cf-content {
+    padding: 32px 24px;
+  }
+
+  .content-fragment .cf-content h2 {
+    font-size: 26px;
+  }
 }
