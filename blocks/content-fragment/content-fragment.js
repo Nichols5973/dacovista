@@ -147,9 +147,27 @@ function renderField(name, value) {
     return img;
   }
 
+  // A page/content reference path with no paired label -> render as a link,
+  // never as raw path text.
+  if (typeof value === 'string' && /^\/content\//.test(value)) {
+    const p = document.createElement('p');
+    p.className = 'button-container';
+    const a = document.createElement('a');
+    a.className = 'button';
+    a.href = value.replace(/\.html?$/, '');
+    a.textContent = 'Learn more';
+    p.append(a);
+    return p;
+  }
+
   const el = document.createElement(/title|heading|name|headline/i.test(name) ? 'h2' : 'p');
   el.textContent = String(value);
   return el;
+}
+
+/** Is this a /content path reference value? */
+function isContentRef(value) {
+  return typeof value === 'string' && /^\/content\//.test(value);
 }
 
 /** Build the inner container from a flat/array field set. Returns it or null. */
@@ -162,12 +180,36 @@ function buildInner(fields) {
       if (el) container.append(el);
     });
   } else if (fields && typeof fields === 'object') {
-    Object.entries(fields).forEach(([name, value]) => {
-      if (isSystemKey(name)) return;
-      if (isSystemValue(value)) return;
-      const el = renderField(name, value);
-      if (el) container.append(el);
-    });
+    const entries = Object.entries(fields).filter(
+      ([name, value]) => !isSystemKey(name) && !isSystemValue(value)
+        && value !== null && value !== undefined && value !== '',
+    );
+    for (let i = 0; i < entries.length; i += 1) {
+      const [name, value] = entries[i];
+      const next = entries[i + 1];
+      // CTA pairing: a /content reference followed by a short plain-text label
+      // (e.g. ctaLink="/content/…" + ctaText="Learn More") -> one styled button.
+      const nextIsLabel = next
+        && typeof next[1] === 'string'
+        && !isContentRef(next[1])
+        && !/<[a-z][\s\S]*>/i.test(next[1])
+        && next[1].length <= 40;
+      if (isContentRef(value) && nextIsLabel) {
+        const [, label] = next;
+        const p = document.createElement('p');
+        p.className = 'button-container';
+        const a = document.createElement('a');
+        a.className = 'button';
+        a.href = value.replace(/\.html?$/, '');
+        a.textContent = label;
+        p.append(a);
+        container.append(p);
+        i += 1; // consume the label entry
+      } else {
+        const el = renderField(name, value);
+        if (el) container.append(el);
+      }
+    }
   }
   return container.children.length ? container : null;
 }
