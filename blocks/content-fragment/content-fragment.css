@@ -137,6 +137,19 @@
  * Author-selectable variations (UE "Options" -> classes on .content-fragment)
  * ------------------------------------------------------------------------- */
 
+/* Layout: Image Left — explicit default (image column first). */
+.content-fragment.image-left .content-fragment-inner.cf-has-media {
+  grid-template-columns: 1fr 1fr;
+}
+
+.content-fragment.image-left .cf-media {
+  order: 1;
+}
+
+.content-fragment.image-left .cf-content {
+  order: 2;
+}
+
 /* Layout: Image Right — flip the two columns (media after content) */
 .content-fragment.image-right .content-fragment-inner.cf-has-media {
   grid-template-columns: 1fr 1fr;
@@ -150,11 +163,14 @@
   order: 1;
 }
 
-/* Layout: Stacked — image on top, text below (single column) */
+/* Layout: Image Top — image on top, text below (single column).
+   (`stacked` kept as a legacy alias.) */
+.content-fragment.image-top .content-fragment-inner.cf-has-media,
 .content-fragment.stacked .content-fragment-inner.cf-has-media {
   grid-template-columns: 1fr;
 }
 
+.content-fragment.image-top .cf-media,
 .content-fragment.stacked .cf-media {
   order: 0;
   max-height: 420px;
@@ -204,6 +220,7 @@
 /* Stack to one column on small screens */
 @media (width < 900px) {
   .content-fragment .content-fragment-inner.cf-has-media,
+  .content-fragment.image-left .content-fragment-inner.cf-has-media,
   .content-fragment.image-right .content-fragment-inner.cf-has-media {
     grid-template-columns: 1fr;
   }

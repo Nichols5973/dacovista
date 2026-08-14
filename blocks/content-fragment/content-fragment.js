@@ -47,16 +47,20 @@ function hasInlineFragment(block, referencePath) {
   return !!text && !text.startsWith('/content/');
 }
 
-/** Candidate JSON endpoints for a CF DAM path (first that returns data wins). */
-function candidateUrls(path) {
+/** Candidate JSON endpoints for a CF DAM path + chosen variation. */
+function candidateUrls(path, variation = 'master') {
   const clean = path.replace(/\.html?$/, '').replace(/\/$/, '');
-  return [
-    // CF field values live on the master variation node, not the asset root.
+  const v = (variation || 'master').trim() || 'master';
+  const urls = [
+    // CF field values live on the variation node under jcr:content/data.
     // ({clean}.json returns dam:Asset system metadata — jcr:*, uuids, dates.)
-    `${clean}/jcr:content/data/master.json`,
-    `${clean}.cfm.gql.json`, // Content Services / GraphQL export
-    `${clean}.model.json`, // Sling model export (some setups)
+    `${clean}/jcr:content/data/${v}.json`,
   ];
+  // Always keep master as a fallback if a non-master variation is missing.
+  if (v !== 'master') urls.push(`${clean}/jcr:content/data/master.json`);
+  urls.push(`${clean}.cfm.gql.json`); // Content Services / GraphQL export
+  urls.push(`${clean}.model.json`); // Sling model export (some setups)
+  return urls;
 }
 
 /** JCR/system property names that are never real CF fields. */
@@ -250,7 +254,29 @@ function layoutAsCard(inner) {
   inner.classList.toggle('cf-has-media', !!media.children.length);
 }
 
+/**
+ * Extract the selected CF variation from the block and remove its cell so it
+ * doesn't render as content. The `variation` select renders as a short text
+ * cell holding one of the known variation values. Returns 'master' if absent.
+ */
+function extractVariation(block) {
+  const known = ['master', 'mobile', 'desktop', 'teaser', 'summary', 'social'];
+  let variation = 'master';
+  block.querySelectorAll('p, div').forEach((el) => {
+    // Only consider leaf cells with just a short text value (no child elements).
+    if (el.children.length) return;
+    const text = el.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
+    if (known.includes(text)) {
+      variation = text;
+      const cell = el.closest('div') || el;
+      cell.remove();
+    }
+  });
+  return variation;
+}
+
 export default async function decorate(block) {
+  const variation = extractVariation(block);
   const referencePath = findReferencePath(block);
 
   // Case 1: AEM rendered the fragment fields inline — keep them, just wrap.
@@ -266,7 +292,7 @@ export default async function decorate(block) {
   // Case 2: block holds only a reference path — fetch and render the fragment.
   if (!referencePath) return;
 
-  const urls = candidateUrls(referencePath);
+  const urls = candidateUrls(referencePath, variation);
   const data = await urls.reduce(
     (acc, url) => acc.then((found) => found || fetchCf(url)),
     Promise.resolve(null),

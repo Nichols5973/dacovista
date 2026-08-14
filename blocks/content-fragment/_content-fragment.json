@@ -27,6 +27,22 @@
           "description": "Select a Content Fragment to render on the page."
         },
         {
+          "component": "select",
+          "name": "variation",
+          "label": "Fragment Variation",
+          "description": "Which Content Fragment variation to render. 'Master' is the default; other names must exist on the selected fragment (falls back to Master if not).",
+          "valueType": "string",
+          "value": "master",
+          "options": [
+            { "name": "Master", "value": "master" },
+            { "name": "Mobile", "value": "mobile" },
+            { "name": "Desktop", "value": "desktop" },
+            { "name": "Teaser", "value": "teaser" },
+            { "name": "Summary", "value": "summary" },
+            { "name": "Social", "value": "social" }
+          ]
+        },
+        {
           "component": "multiselect",
           "name": "classes",
           "value": "",
@@ -36,8 +52,9 @@
             {
               "name": "Layout",
               "children": [
+                { "name": "Image Left", "value": "image-left" },
                 { "name": "Image Right", "value": "image-right" },
-                { "name": "Stacked", "value": "stacked" },
+                { "name": "Image Top", "value": "image-top" },
                 { "name": "Text Only", "value": "text-only" }
               ]
             },
