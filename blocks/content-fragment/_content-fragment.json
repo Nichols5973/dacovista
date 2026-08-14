@@ -35,11 +35,8 @@
           "value": "master",
           "options": [
             { "name": "Master", "value": "master" },
-            { "name": "Mobile", "value": "mobile" },
-            { "name": "Desktop", "value": "desktop" },
-            { "name": "Teaser", "value": "teaser" },
-            { "name": "Summary", "value": "summary" },
-            { "name": "Social", "value": "social" }
+            { "name": "Broker", "value": "broker" },
+            { "name": "Doctor", "value": "doctor" }
           ]
         },
         {

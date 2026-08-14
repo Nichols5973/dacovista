@@ -354,24 +354,12 @@
             "value": "master"
           },
           {
-            "name": "Mobile",
-            "value": "mobile"
+            "name": "Broker",
+            "value": "broker"
           },
           {
-            "name": "Desktop",
-            "value": "desktop"
-          },
-          {
-            "name": "Teaser",
-            "value": "teaser"
-          },
-          {
-            "name": "Summary",
-            "value": "summary"
-          },
-          {
-            "name": "Social",
-            "value": "social"
+            "name": "Doctor",
+            "value": "doctor"
           }
         ]
       },

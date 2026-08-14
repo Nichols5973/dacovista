@@ -260,7 +260,7 @@ function layoutAsCard(inner) {
  * cell holding one of the known variation values. Returns 'master' if absent.
  */
 function extractVariation(block) {
-  const known = ['master', 'mobile', 'desktop', 'teaser', 'summary', 'social'];
+  const known = ['master', 'broker', 'doctor'];
   let variation = 'master';
   block.querySelectorAll('p, div').forEach((el) => {
     // Only consider leaf cells with just a short text value (no child elements).
