@@ -1,7 +1,7 @@
 /*
  * content-fragment — renders an AEM Content Fragment as a two-column feature
  * card (image left, text right, CTA button), matching the TE Connectivity
- * reference layout: light grey panel with orange accents.
+ * reference layout: light grey panel with Covista green accents.
  */
 
 .content-fragment.block {
@@ -62,14 +62,14 @@
   color: #1a1a1a;
 }
 
-/* Orange underline accent under the headline (TE look) */
+/* Green underline accent under the headline (Covista brand) */
 .content-fragment .cf-content h2::after {
   content: "";
   display: block;
   width: 64px;
   height: 3px;
   margin-top: 12px;
-  background-color: #eb6209; /* TE orange */
+  background-color: var(--brand-green, rgb(27 73 41)); /* Covista green */
 }
 
 /* Subheading — muted grey */
@@ -95,7 +95,7 @@
   margin: 0 0 12px;
 }
 
-/* CTA — TE orange arrow button */
+/* CTA — Covista green arrow button */
 .content-fragment .cf-content .button-container {
   display: inline;
   margin-top: 8px;
@@ -110,7 +110,7 @@
   padding: 12px 22px;
   border: 0;
   border-radius: 0;
-  background-color: #eb6209; /* TE orange */
+  background-color: var(--brand-green, rgb(27 73 41)); /* Covista green */
   color: #fff;
   font-family: var(--heading-font-family, "acumin-pro-wide-medium", helvetica, arial, sans-serif);
   font-size: 15px;
@@ -129,7 +129,7 @@
 
 .content-fragment .cf-content a.button:hover,
 .content-fragment .cf-content a.button:focus {
-  background-color: #c8530a; /* darker orange */
+  background-color: var(--link-hover-color, rgb(71 107 82)); /* darker green */
   color: #fff;
 }
 
