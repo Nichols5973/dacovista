@@ -90,6 +90,29 @@ comments.
 3. Swap the URL to the live endpoint and confirm it changes with the selected
    fragment.
 
+## Inline editing of fragment content (UE instrumentation)
+
+The block instruments each rendered field so authors can edit CF content from
+Universal Editor, and lets the block open the full CF editor:
+
+- **Only in the editor context** (block carries `data-aue-resource`) does it add
+  `data-aue-resource` / `data-aue-prop` / `data-aue-type` to each field
+  (title → `text`, body → `richtext`, image → `media`). Preview/publish render
+  stays clean (no instrumentation).
+- **Edits target the selected variation**: the resource urn points at
+  `<cfPath>/jcr:content/data/<variation>` (master/broker/doctor), so changes save
+  to the variation currently displayed.
+- The block sets `data-aue-type="reference"` + `data-aue-filter="cf"` so selecting
+  it can open the Content Fragment editor.
+
+> ⚠️ **Verify in your AEM.** Inline CF editing depends on your Universal Editor +
+> AEM version honouring these `data-aue-*` bindings against a CF data node, and on
+> the UE persistence layer allowing writes to that node. This could not be tested
+> against your instance. If inline edits don't persist, use the "open CF editor"
+> affordance (selecting the block) to edit the fragment in the CF editor — that is
+> the always-supported path. Field-name → `data-aue-prop` must match the CF model's
+> element names (the block uses the JSON field names returned by the data node).
+
 ## If you'd rather keep it simple
 
 The static list already works and the content swaps correctly on selection. If the

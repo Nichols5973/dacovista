@@ -115,8 +115,25 @@ function extractFields(data) {
   return fields;
 }
 
-/** Render one field value into a styled element. */
-function renderField(name, value) {
+/**
+ * Add Universal Editor instrumentation to a rendered field element so authors
+ * can inline-edit it. Edits bind to the CF variation node's property.
+ * @param {Element} el rendered element
+ * @param {string} prop CF field name
+ * @param {string} type UE field type: 'text' | 'richtext' | 'media'
+ * @param {string} resource urn:aemconnection:<cfPath>/jcr:content/data/<variation>
+ */
+function instrument(el, prop, type, resource) {
+  if (!el || !resource) return el;
+  el.setAttribute('data-aue-resource', resource);
+  el.setAttribute('data-aue-prop', prop);
+  el.setAttribute('data-aue-type', type);
+  el.setAttribute('data-aue-label', prop);
+  return el;
+}
+
+/** Render one field value into a styled, UE-instrumented element. */
+function renderField(name, value, resource) {
   if (value === null || value === undefined || value === '') return null;
 
   if (typeof value === 'object' && !Array.isArray(value)) {
@@ -124,12 +141,12 @@ function renderField(name, value) {
       const div = document.createElement('div');
       div.className = 'cf-richtext';
       div.innerHTML = value.html;
-      return div;
+      return instrument(div, name, 'richtext', resource);
     }
     if (value.plaintext) {
       const p = document.createElement('p');
       p.textContent = value.plaintext;
-      return p;
+      return instrument(p, name, 'text', resource);
     }
     return null;
   }
@@ -139,7 +156,7 @@ function renderField(name, value) {
     const div = document.createElement('div');
     div.className = 'cf-richtext';
     div.innerHTML = value;
-    return div;
+    return instrument(div, name, 'richtext', resource);
   }
 
   // Image/asset path
@@ -148,7 +165,7 @@ function renderField(name, value) {
     img.src = value;
     img.alt = name;
     img.loading = 'lazy';
-    return img;
+    return instrument(img, name, 'media', resource);
   }
 
   // A page/content reference path with no paired label -> render as a link,
@@ -161,12 +178,12 @@ function renderField(name, value) {
     a.href = value.replace(/\.html?$/, '');
     a.textContent = 'Learn more';
     p.append(a);
-    return p;
+    return instrument(p, name, 'text', resource);
   }
 
   const el = document.createElement(/title|heading|name|headline/i.test(name) ? 'h2' : 'p');
   el.textContent = String(value);
-  return el;
+  return instrument(el, name, 'text', resource);
 }
 
 /** Is this a /content path reference value? */
@@ -174,13 +191,17 @@ function isContentRef(value) {
   return typeof value === 'string' && /^\/content\//.test(value);
 }
 
-/** Build the inner container from a flat/array field set. Returns it or null. */
-function buildInner(fields) {
+/** Build the inner container from a flat/array field set. Returns it or null.
+ * @param {object|Array} fields normalised CF fields
+ * @param {string} [resource] UE resource urn for the CF variation node (enables
+ *   inline editing of each field); omit for a non-editable render.
+ */
+function buildInner(fields, resource) {
   const container = document.createElement('div');
   container.className = 'content-fragment-inner';
   if (Array.isArray(fields)) {
     fields.forEach(({ name, value }) => {
-      const el = renderField(name, value);
+      const el = renderField(name, value, resource);
       if (el) container.append(el);
     });
   } else if (fields && typeof fields === 'object') {
@@ -199,7 +220,7 @@ function buildInner(fields) {
         && !/<[a-z][\s\S]*>/i.test(next[1])
         && next[1].length <= 40;
       if (isContentRef(value) && nextIsLabel) {
-        const [, label] = next;
+        const [labelName, label] = next;
         const p = document.createElement('p');
         p.className = 'button-container';
         const a = document.createElement('a');
@@ -207,15 +228,23 @@ function buildInner(fields) {
         a.href = value.replace(/\.html?$/, '');
         a.textContent = label;
         p.append(a);
+        instrument(p, labelName, 'text', resource);
         container.append(p);
         i += 1; // consume the label entry
       } else {
-        const el = renderField(name, value);
+        const el = renderField(name, value, resource);
         if (el) container.append(el);
       }
     }
   }
   return container.children.length ? container : null;
+}
+
+/** Build the UE resource urn for a CF variation data node. */
+function cfResourceUrn(referencePath, variation) {
+  const clean = referencePath.replace(/\.html?$/, '').replace(/\/$/, '');
+  const v = (variation || 'master').trim() || 'master';
+  return `urn:aemconnection:${clean}/jcr:content/data/${v}`;
 }
 
 async function fetchCf(url) {
@@ -292,17 +321,32 @@ export default async function decorate(block) {
   // Case 2: block holds only a reference path — fetch and render the fragment.
   if (!referencePath) return;
 
+  // In the Universal Editor author context the block carries a data-aue-resource.
+  // When present, instrument the rendered fields so they are inline-editable and
+  // let the block open the Content Fragment editor. On preview/publish there's no
+  // such attribute, so we render a plain (non-instrumented) card.
+  const inEditor = block.hasAttribute('data-aue-resource');
+  const cfResource = inEditor ? cfResourceUrn(referencePath, variation) : null;
+
   const urls = candidateUrls(referencePath, variation);
   const data = await urls.reduce(
     (acc, url) => acc.then((found) => found || fetchCf(url)),
     Promise.resolve(null),
   );
 
-  const inner = data && buildInner(extractFields(data));
+  const inner = data && buildInner(extractFields(data), cfResource);
   if (inner) {
     block.textContent = '';
     block.append(inner);
     layoutAsCard(inner);
+
+    // Let the whole block open the Content Fragment editor from UE.
+    if (cfResource) {
+      block.setAttribute('data-aue-resource', cfResource);
+      block.setAttribute('data-aue-type', 'reference');
+      block.setAttribute('data-aue-label', 'Content Fragment');
+      block.setAttribute('data-aue-filter', 'cf');
+    }
   }
   // If the fetch failed (e.g. CORS/auth in a context that can't reach the DAM),
   // leave the block as-is rather than throwing — avoids a broken author view.
