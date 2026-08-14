@@ -133,13 +133,83 @@
   color: #fff;
 }
 
+/* ---------------------------------------------------------------------------
+ * Author-selectable variations (UE "Options" -> classes on .content-fragment)
+ * ------------------------------------------------------------------------- */
+
+/* Layout: Image Right — flip the two columns (media after content) */
+.content-fragment.image-right .content-fragment-inner.cf-has-media {
+  grid-template-columns: 1fr 1fr;
+}
+
+.content-fragment.image-right .cf-media {
+  order: 2;
+}
+
+.content-fragment.image-right .cf-content {
+  order: 1;
+}
+
+/* Layout: Stacked — image on top, text below (single column) */
+.content-fragment.stacked .content-fragment-inner.cf-has-media {
+  grid-template-columns: 1fr;
+}
+
+.content-fragment.stacked .cf-media {
+  order: 0;
+  max-height: 420px;
+}
+
+/* Layout: Text Only — hide the media column, single content column */
+.content-fragment.text-only .cf-media {
+  display: none;
+}
+
+.content-fragment.text-only .content-fragment-inner.cf-has-media {
+  grid-template-columns: 1fr;
+}
+
+/* Panel: Cream / No Panel */
+.content-fragment.panel-cream .content-fragment-inner {
+  background-color: var(--secondary-cream, rgb(255 249 245));
+}
+
+.content-fragment.no-panel .content-fragment-inner {
+  background-color: transparent;
+}
+
+/* Spacing: Compact / Spacious (content padding) */
+.content-fragment.compact .cf-content {
+  padding: 28px 32px;
+}
+
+.content-fragment.spacious .cf-content {
+  padding: 72px 80px;
+}
+
+/* Section Margin around the whole block */
+.content-fragment.no-margin.block {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.content-fragment.pad-top.block {
+  margin-top: 48px;
+}
+
+.content-fragment.pad-bottom.block {
+  margin-bottom: 48px;
+}
+
 /* Stack to one column on small screens */
 @media (width < 900px) {
-  .content-fragment .content-fragment-inner.cf-has-media {
+  .content-fragment .content-fragment-inner.cf-has-media,
+  .content-fragment.image-right .content-fragment-inner.cf-has-media {
     grid-template-columns: 1fr;
   }
 
-  .content-fragment .cf-content {
+  .content-fragment .cf-content,
+  .content-fragment.spacious .cf-content {
     padding: 32px 24px;
   }
 

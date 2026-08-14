@@ -25,6 +25,45 @@
           "name": "reference",
           "label": "Content Fragment",
           "description": "Select a Content Fragment to render on the page."
+        },
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "value": "",
+          "label": "Options",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Layout",
+              "children": [
+                { "name": "Image Right", "value": "image-right" },
+                { "name": "Stacked", "value": "stacked" },
+                { "name": "Text Only", "value": "text-only" }
+              ]
+            },
+            {
+              "name": "Panel",
+              "children": [
+                { "name": "Cream Panel", "value": "panel-cream" },
+                { "name": "No Panel", "value": "no-panel" }
+              ]
+            },
+            {
+              "name": "Spacing",
+              "children": [
+                { "name": "Compact", "value": "compact" },
+                { "name": "Spacious", "value": "spacious" }
+              ]
+            },
+            {
+              "name": "Section Margin",
+              "children": [
+                { "name": "No Margin", "value": "no-margin" },
+                { "name": "Pad Top", "value": "pad-top" },
+                { "name": "Pad Bottom", "value": "pad-bottom" }
+              ]
+            }
+          ]
         }
       ]
     }
