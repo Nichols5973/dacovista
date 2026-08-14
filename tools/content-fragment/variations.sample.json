@@ -1,0 +1,5 @@
+[
+  { "name": "master", "title": "Master" },
+  { "name": "broker", "title": "Broker" },
+  { "name": "doctor", "title": "Doctor" }
+]

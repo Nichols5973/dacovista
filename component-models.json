@@ -345,9 +345,17 @@
         "component": "select",
         "name": "variation",
         "label": "Fragment Variation",
-        "description": "Which Content Fragment variation to render. 'Master' is the default; other names must exist on the selected fragment (falls back to Master if not).",
+        "description": "Variations of the selected Content Fragment. Populated dynamically from the fragment's own variations (falls back to the static list below if the data source is unavailable).",
         "valueType": "string",
         "value": "master",
+        "optionsSource": {
+          "type": "json",
+          "url": "/tools/content-fragment/variations.json?fragment=${reference}",
+          "map": {
+            "value": "name",
+            "text": "title"
+          }
+        },
         "options": [
           {
             "name": "Master",
