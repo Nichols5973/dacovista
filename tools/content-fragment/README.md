@@ -46,18 +46,38 @@ Master/Broker/Doctor list).
 
 ## Deploy options (pick one)
 
-- **AEM servlet / proxy (recommended):** expose `/tools/content-fragment/variations.json`
-  from AEM itself so it runs with the author session and can read
-  `<cfPath>/jcr:content/data.1.json` directly. Map `getVariations()` logic into a
-  Sling servlet, or just have the servlet return the child-node names of the data
-  node. Same-origin with the editor, so no CORS.
-- **Small Node/edge service:** host `variations.js` behind
-  `/tools/content-fragment/variations.json`, giving it an authenticated
-  `aemFetch` (service token / technical account) to call AEM Author. Ensure CORS
-  allows the Universal Editor origin.
+### Option A — AEM Sling servlet (recommended)
 
-`variations.js` exports `getVariations(fragmentPath, aemFetch)` and includes an
-Express adapter example in comments.
+`servlet/ContentFragmentVariationsServlet.java` is a ready-to-adapt Sling servlet.
+It runs inside AEM Author (uses the author session — no external token, same-origin
+so no CORS) and lists the child nodes of `<cfPath>/jcr:content/data` as variation
+options.
+
+To deploy:
+1. Move the file into your AEM Maven project's bundle, e.g.
+   `core/src/main/java/com/covista/core/servlets/ContentFragmentVariationsServlet.java`,
+   and change the `package` line to match (the stub uses `com.covista.core.servlets`).
+2. Ensure Gson (`com.google.gson`) is available to the bundle (it ships with AEM;
+   otherwise swap the JSON building for your preferred library).
+3. It registers on the fixed path `/tools/content-fragment/variations` via
+   `sling.servlet.paths`, so AEM serves it at
+   **`/tools/content-fragment/variations.json`** — exactly the URL the model field
+   calls. (The `.json` extension is the request selector/extension; the path
+   registration handles it.)
+4. Build & deploy the bundle (`mvn clean install -PautoInstallPackage` or your
+   pipeline). Test: `GET /tools/content-fragment/variations.json?fragment=<cfPath>`.
+
+> Registering a servlet on a `/tools/...` path may require allow-listing that path
+> depending on your AEM security config. If it 404s, confirm the path binding is
+> permitted, or register under an approved servlet root and update the model `url`.
+
+### Option B — Node / edge service
+
+Host `variations.js` behind `/tools/content-fragment/variations.json`, giving it an
+authenticated `aemFetch` (service token / technical account) to call AEM Author.
+Ensure CORS allows the Universal Editor origin. `variations.js` exports
+`getVariations(fragmentPath, aemFetch)` and includes an Express adapter example in
+comments.
 
 ## Test the wiring before going live
 
