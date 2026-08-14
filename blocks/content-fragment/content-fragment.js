@@ -339,13 +339,22 @@ export default async function decorate(block) {
     block.textContent = '';
     block.append(inner);
     layoutAsCard(inner);
+
+    // "Open Content Fragment editor" affordance — placed on the INNER wrapper,
+    // NOT the block. The block keeps its own page-node resource (so its
+    // reference/variation/classes fields patch correctly); selecting the inner
+    // node targets the CF and opens the CF editor.
+    if (cfResource) {
+      inner.setAttribute('data-aue-resource', cfResource);
+      inner.setAttribute('data-aue-type', 'reference');
+      inner.setAttribute('data-aue-label', 'Content Fragment');
+      inner.setAttribute('data-aue-filter', 'cf');
+    }
   }
   // NOTE: do NOT overwrite the block's own data-aue-resource. The block's
   // resource must stay its page node so its own fields (reference, variation,
   // classes) patch correctly — changing the Variation select was PATCHing
   // /variation onto the CF data node (which has no such property) => MissingError.
-  // The CF's own fields are still inline-editable via the per-field
-  // data-aue-resource set on each rendered element inside .content-fragment-inner.
 
   // If the fetch failed (e.g. CORS/auth in a context that can't reach the DAM),
   // leave the block as-is rather than throwing — avoids a broken author view.
