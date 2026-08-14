@@ -51,18 +51,49 @@ function hasInlineFragment(block, referencePath) {
 function candidateUrls(path) {
   const clean = path.replace(/\.html?$/, '').replace(/\/$/, '');
   return [
-    `${clean}.json`, // AEM Assets HTTP API -> { properties: { elements } }
+    // CF field values live on the master variation node, not the asset root.
+    // ({clean}.json returns dam:Asset system metadata — jcr:*, uuids, dates.)
+    `${clean}/jcr:content/data/master.json`,
     `${clean}.cfm.gql.json`, // Content Services / GraphQL export
     `${clean}.model.json`, // Sling model export (some setups)
   ];
+}
+
+/** JCR/system property names that are never real CF fields. */
+function isSystemKey(name) {
+  return (
+    name.startsWith('_')
+    || name.startsWith(':')
+    || /^(jcr|cq|sling|dam|xmp|mix|nt|rep|pdf|tiff|exif|dc|granite):/i.test(name)
+    || /@/.test(name) // element metadata sidecars, e.g. "description@ContentType"
+    || name === 'model'
+  );
+}
+
+/** True if a value is a JCR system artifact (uuid, iso-date, primary-type-ish). */
+function isSystemValue(value) {
+  if (typeof value !== 'string') return false;
+  if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value)) return true; // uuid
+  if (/^[A-Z][a-z]{2} [A-Z][a-z]{2} \d{2} \d{4} \d{2}:\d{2}:\d{2} GMT/.test(value)) return true; // JCR date
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(value)) return true; // ISO date
+  if (/^(nt|dam|cq|mix|sling):/i.test(value)) return true; // primaryType / mixin values
+  return false;
 }
 
 /** Normalise the many CF JSON shapes down to a flat { fieldName: value } map. */
 function extractFields(data) {
   if (!data || typeof data !== 'object') return null;
 
+  // .../jcr:content/data/master.json -> { ":type": "<model>", field: value, ... }
+  // (system keys are filtered later in buildInner via isSystemKey/isSystemValue).
+  // If the payload nests the master node, unwrap it.
+  let node = data;
+  if (node['jcr:content']) node = node['jcr:content'];
+  if (node.data && node.data.master) node = node.data.master;
+  else if (node.master) node = node.master;
+
   // AEM Assets HTTP API: { properties: { elements: { name: { value, ":type" } } } }
-  const elements = data.properties && data.properties.elements;
+  const elements = node.properties && node.properties.elements;
   if (elements && typeof elements === 'object') {
     const out = {};
     Object.entries(elements).forEach(([name, el]) => {
@@ -72,8 +103,8 @@ function extractFields(data) {
   }
 
   // Content Services / GraphQL: { data: { <query>: { item(s): { ...fields } } } }
-  let fields = data;
-  if (fields.data) [fields] = Object.values(fields.data);
+  let fields = node;
+  if (fields.data && !fields.data.master) [fields] = Object.values(fields.data);
   if (fields && fields.item) fields = fields.item;
   if (fields && Array.isArray(fields.items) && fields.items.length) [fields] = fields.items;
   if (fields && fields.fields) fields = fields.fields;
@@ -132,7 +163,8 @@ function buildInner(fields) {
     });
   } else if (fields && typeof fields === 'object') {
     Object.entries(fields).forEach(([name, value]) => {
-      if (name.startsWith('_') || name.startsWith(':') || name === 'model' || name === 'cq:model') return;
+      if (isSystemKey(name)) return;
+      if (isSystemValue(value)) return;
       const el = renderField(name, value);
       if (el) container.append(el);
     });
